@@ -1,5 +1,5 @@
 import React from "react"
-import { Footer } from "../../components/layout/footer"
+import { Footer } from "../../components/layout/Footer"
 import { Section } from "../../components/layout/Section"
 import CustomerTestimonials from "../../components/layout/CustomerTestimonials"
 import ShopByCategory from "../../components/layout/ShopByCategory"
