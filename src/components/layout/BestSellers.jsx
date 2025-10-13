@@ -7,12 +7,12 @@ import img1 from "../../assets/T-shirt1.jpg"
 import img2 from "../../assets/T-shirt2.jpg"
 import img3 from "../../assets/T-shirt3.jpg"
 import img4 from "../../assets/T-shirt4.jpg"
-import img5 from "../../assets/T-shirt1.jpg"
-import img6 from "../../assets/T-shirt2.jpg"
-import img7 from "../../assets/T-shirt3.jpg"
-import img8 from "../../assets/T-shirt4.jpg"
-import img9 from "../../assets/T-shirt1.jpg"
-import img10 from "../../assets/T-shirt2.jpg"
+import img5 from "../../assets/T-shirt5.jpg"
+import img6 from "../../assets/T-shirt6.jpg"
+import img7 from "../../assets/T-shirt7.jpg"
+import img8 from "../../assets/T-shirt8.jpg"
+import img9 from "../../assets/T-shirt9.jpg"
+import img10 from "../../assets/T-shirt10.jpg"
 
 const bestSellers = [
   {
@@ -129,7 +129,7 @@ export default function BestSellers() {
   }
 
   const handleProductClick = (productId) => {
-    navigate(`/product/${productId}`)
+    navigate(`ProductDetail`)
   }
 
   return (
@@ -170,7 +170,7 @@ export default function BestSellers() {
                 src={product.image}
                 alt={product.name}
                 loading="lazy"
-                className="w-full h-[250px] sm:h-[280px] md:h-[300px] object-cover transition-transform duration-700 group-hover:scale-110"
+                className="w-full h-[250px]  sm:h-[280px] md:h-[300px] object-cover transition-transform duration-700 group-hover:scale-110"
               />
 
               {/* Hover Button */}

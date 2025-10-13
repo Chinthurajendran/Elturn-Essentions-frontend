@@ -14,15 +14,22 @@ function Home() {
       <ShopByCategory />
       <ScrollBasedVelocityDemo />
       <BestSellers />
-      <div style={{ height: "600px", position: "relative" }}>
+      <div
+        style={{
+          height: "600px",
+          position: "relative",
+        }}
+      >
         <CircularGallery
           bend={3}
-          textColor="#ffffff"
+          textColor="#000000"
           borderRadius={0.05}
           scrollEase={0.02}
+          font='bold 30px "Roboto Slab"'
         />
       </div>
-            <CustomerTestimonials />
+
+      <CustomerTestimonials />
       <Footer />
     </div>
   )
