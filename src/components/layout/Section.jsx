@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import slide1 from "../../assets/6359.jpg";
 import slide2 from "../../assets/6358.jpg";
 import slide3 from "../../assets/6357.jpg";
-import { Header } from "./header";
+import { Header } from "./Header";
 
 export function Section() {
   const slides = [
