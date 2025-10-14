@@ -163,7 +163,7 @@ export default function ProductDetail() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-white pt-20 overflow-hidden">
+    <div className="flex flex-col min-h-screen bg-[#f5f5f7] pt-20 overflow-hidden">
       <Header />
 
       <main className="flex-grow p-6">
@@ -179,12 +179,22 @@ export default function ProductDetail() {
           </div>
 
           {/* CENTER: Image Carousel */}
-          <div className="lg:w-1/2 flex flex-col items-center relative">
-            <img
-              src={product.images[mainImageIndex]}
-              alt={product.productName}
-              className="w-full h-[500px] object-cover rounded-lg"
-            />
+          <div className="lg:w-1/2 flex flex-col items-center relative overflow-hidden">
+            <div className="w-full h-[500px] relative">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={product.images[mainImageIndex]}
+                  src={product.images[mainImageIndex]}
+                  alt={product.productName}
+                  className="w-full h-full object-cover rounded-lg"
+                  initial={{ opacity: 0, scale: 0.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                />
+              </AnimatePresence>
+            </div>
+
             {/* Arrows */}
             <button
               onClick={handlePrev}

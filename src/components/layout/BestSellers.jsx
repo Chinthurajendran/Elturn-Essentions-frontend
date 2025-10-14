@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa"
 import { useNavigate } from "react-router-dom"
+import RelatedProductsSlider from "./RelatedProductsSlider"
 
 import img1 from "../../assets/T-shirt1.jpg"
 import img2 from "../../assets/T-shirt2.jpg"
@@ -145,6 +146,15 @@ export default function BestSellers() {
       >
         Best Sellers
       </motion.h2>
+
+
+              <div className="relative py-10 px-4 md:px-8 lg:px-12">
+                <h2 className="text-2xl font-semibold mb-6 text-red-600">
+                  Related Products
+                </h2>
+                <RelatedProductsSlider relatedProducts={bestSellers} />
+              </div>
+
 
       {/* Product Slider */}
       <div className="w-full ">

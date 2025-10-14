@@ -36,14 +36,11 @@ export default function RelatedProductsSlider({ relatedProducts }) {
   }
 
   const handleProductClick = (productId) => {
-    navigate(`ProductDetail`) // replace with your route logic
+    navigate(`ProductDetail`)
   }
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative py-10 px-4 md:px-8 lg:px-12 "
-    >
+    <section ref={sectionRef} className="relative py-10 px-4 md:px-8 lg:px-12 ">
       {/* <motion.h2
         initial={{ opacity: 0, y: 50 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -68,44 +65,49 @@ export default function RelatedProductsSlider({ relatedProducts }) {
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.0, delay: index * 0.2 }}
-              whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-              whileTap={{ scale: 0.95 }}
-           className="relative bg-white rounded-2xl overflow-hidden  cursor-pointer group flex-shrink-0 w-[85%] sm:w-[30%] md:w-[18%] shadow-sm hover:shadow-lg transition-all"
+              className="relative bg-white  overflow-hidden  cursor-pointer group flex-shrink-0 w-[85%] sm:w-[30%] md:w-[18%]  "
             >
               {/* Product Image */}
               <img
                 src={product.image}
                 alt={product.name}
                 loading="lazy"
-                 className="w-full h-[250px] sm:h-[280px] md:h-[300px] object-cover transition-transform duration-700 group-hover:scale-110"
+                // className="w-full h-[250px] sm:h-[280px] md:h-[300px] object-cover transition-transform duration-700 "
+                className="w-full h-[250px]  sm:h-[280px] md:h-[300px] object-cover transition-transform duration-700 group-hover:scale-110"
               />
 
               {/* Hover Button */}
-              <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <button className="px-4 py-2 bg-white text-gray-900 font-semibold rounded-full shadow-md hover:bg-gray-200 transition-all duration-300">
-                  View Details
-                </button>
+              <div className="absolute bottom-0 left-0 right-0 h-[40%] flex items-center justify-center bg-[#f5f5f7] opacity-0 group-hover:opacity-100 translate-y-[20%] group-hover:translate-y-0 transition-all duration-500 ease-out">
+                <div className="p-4 text-center rounded-xl w-[90%] max-w-sm">
+                  {/* Product colors */}
+                  <div className="flex justify-center mb-2 gap-2">
+                    {product.colors.map((color, i) => (
+                      <span
+                        key={i}
+                        className="w-4 h-4 rounded-full border border-gray-300"
+                        style={{ backgroundColor: color }}
+                      ></span>
+                    ))}
+                  </div>
+
+                  {/* Product name */}
+                  <h3 className="text-gray-900 font-semibold text-base sm:text-lg">
+                    {product.name}
+                  </h3>
+
+                  {/* Category */}
+                  <p className="text-gray-500 mt-1 text-sm">
+                    {product.category}
+                  </p>
+
+                  {/* Price */}
+                  <p className="text-red-600 font-bold mt-2 text-base sm:text-lg">
+                    {product.price}
+                  </p>
+                </div>
               </div>
 
               {/* Product Info */}
-              <div className="p-4 text-center bg-gradient-to-t from-white to-transparent">
-                <div className="flex justify-center mb-2 gap-2">
-                  {product.colors.map((color, i) => (
-                    <span
-                      key={i}
-                      className="w-4 h-4 rounded-full border border-gray-300"
-                      style={{ backgroundColor: color }}
-                    ></span>
-                  ))}
-                </div>
-                <h3 className="text-gray-900 font-semibold text-base sm:text-lg">
-                  {product.name}
-                </h3>
-                <p className="text-gray-500 mt-1 text-sm">{product.category}</p>
-                <p className="text-red-600 font-bold mt-2 text-base sm:text-lg">
-                  {product.price}
-                </p>
-              </div>
             </motion.div>
           ))}
         </motion.div>
