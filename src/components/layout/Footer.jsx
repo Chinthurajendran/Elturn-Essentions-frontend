@@ -9,9 +9,9 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <Link to="/" className="flex items-center gap-2">
-              <span className="text-xl font-bold">Elturn</span>
+              <span className="text-xl font-plusjakarta font-bold">Elturn</span>
             </Link>
-            <p className="text-sm text-white/80 leading-relaxed">
+            <p className="text-sm font-plusjakarta text-white/80 leading-relaxed">
               Premium fashion for those who appreciate luxury and elegance.
             </p>
             <div className="flex gap-4">
@@ -41,12 +41,12 @@ export function Footer() {
 
           {/* Shop */}
           <div className="space-y-4">
-            <h3 className="font-bold text-lg">Shop</h3>
+            <h3 className="font-bold font-plusjakarta text-lg">Shop</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
                   to="/women"
-                  className="text-white/80 hover:text-white transition-colors"
+                  className="text-white/80 font-plusjakarta hover:text-white transition-colors"
                 >
                   Women's Collection
                 </Link>
@@ -54,7 +54,7 @@ export function Footer() {
               <li>
                 <Link
                   to="/men"
-                  className="text-white/80 hover:text-white transition-colors"
+                  className="text-white/80 font-plusjakarta hover:text-white transition-colors"
                 >
                   Men's Collection
                 </Link>
@@ -64,12 +64,12 @@ export function Footer() {
 
           {/* Customer Service */}
           <div className="space-y-4">
-            <h3 className="font-bold text-lg">Customer Service</h3>
+            <h3 className="font-bold font-plusjakarta text-lg">Customer Service</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
                   to="/contact"
-                  className="text-white/80 hover:text-white transition-colors"
+                  className="text-white/80 font-plusjakarta hover:text-white transition-colors"
                 >
                   Contact Us
                 </Link>
@@ -77,7 +77,7 @@ export function Footer() {
               <li>
                 <Link
                   to="/shipping"
-                  className="text-white/80 hover:text-white transition-colors"
+                  className="text-white/80 font-plusjakarta hover:text-white transition-colors"
                 >
                   Shipping Info
                 </Link>
@@ -85,7 +85,7 @@ export function Footer() {
               <li>
                 <Link
                   to="/returns"
-                  className="text-white/80 hover:text-white transition-colors"
+                  className="text-white/80 font-plusjakarta hover:text-white transition-colors"
                 >
                   Returns & Exchanges
                 </Link>
@@ -93,7 +93,7 @@ export function Footer() {
               <li>
                 <Link
                   to="/faq"
-                  className="text-white/80 hover:text-white transition-colors"
+                  className="text-white/80 font-plusjakarta hover:text-white transition-colors"
                 >
                   FAQ
                 </Link>
@@ -103,12 +103,12 @@ export function Footer() {
 
           {/* Company */}
           <div className="space-y-4">
-            <h3 className="font-bold text-lg">Company</h3>
+            <h3 className="font-bold  font-plusjakarta text-lg">Company</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
                   to="/about"
-                  className="text-white/80 hover:text-white transition-colors"
+                  className="text-white/80 font-plusjakarta hover:text-white transition-colors"
                 >
                   About Us
                 </Link>
@@ -116,7 +116,7 @@ export function Footer() {
               <li>
                 <Link
                   to="/careers"
-                  className="text-white/80 hover:text-white transition-colors"
+                  className="text-white/80 font-plusjakarta hover:text-white transition-colors"
                 >
                   Careers
                 </Link>
@@ -124,7 +124,7 @@ export function Footer() {
               <li>
                 <Link
                   to="/privacy"
-                  className="text-white/80 hover:text-white transition-colors"
+                  className="text-white/80 font-plusjakarta hover:text-white transition-colors"
                 >
                   Privacy Policy
                 </Link>
@@ -132,7 +132,7 @@ export function Footer() {
               <li>
                 <Link
                   to="/terms"
-                  className="text-white/80 hover:text-white transition-colors"
+                  className="text-white/80 font-plusjakarta hover:text-white transition-colors"
                 >
                   Terms of Service
                 </Link>
@@ -141,7 +141,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-white/20 text-center text-sm text-white/70">
+        <div className="mt-12 pt-8 font-plusjakarta border-t border-white/20 text-center text-sm text-white/70">
           <p>&copy; {new Date().getFullYear()} Elturn. All rights reserved.</p>
         </div>
       </div>

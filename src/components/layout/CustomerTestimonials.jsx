@@ -91,8 +91,8 @@ export default function CustomerTestimonials() {
 
   return (
     <div className="py-16 px-4 overflow-hidden">
-      <h2 className="text-4xl font-bold text-center mb-4">What Our Customers Say</h2>
-      <p className="text-center text-xl text-gray-600 mb-10">
+      <h2 className="text-4xl font-plusjakarta font-bold text-center mb-4">What Our Customers Say</h2>
+      <p className="text-center font-plusjakarta  text-xl text-gray-600 mb-10">
         Real experiences from our valued customers
       </p>
 

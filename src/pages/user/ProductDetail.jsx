@@ -1,5 +1,5 @@
 // ProductDetail.jsx
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import { Header } from "../../components/layout/Header"
 import { Footer } from "../../components/layout/Footer"
 import {
@@ -10,7 +10,7 @@ import {
   FaPlus,
   FaMinus,
 } from "react-icons/fa"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, useInView } from "framer-motion"
 import RelatedProductsSlider from "../../components/layout/RelatedProductsSlider"
 
 import img1 from "../../assets/T-shirt1.jpg"
@@ -23,7 +23,6 @@ import img7 from "../../assets/T-shirt7.jpg"
 import img8 from "../../assets/T-shirt8.jpg"
 import img9 from "../../assets/T-shirt9.jpg"
 import img10 from "../../assets/T-shirt10.jpg"
-
 
 import prod1 from "../../assets/Product1.png"
 import prod2 from "../../assets/Product2.png"
@@ -139,6 +138,9 @@ export default function ProductDetail() {
   const [selectedColor, setSelectedColor] = useState(product.colors[0])
   const [quantity, setQuantity] = useState(1)
   const [prevQuantity, setPrevQuantity] = useState(1)
+  const sectionRef = useRef(null)
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
+  
 
   const selectedSizeData = product.sizes.find(
     (s) => s.size === selectedSize
@@ -163,7 +165,10 @@ export default function ProductDetail() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#f5f5f7] pt-20 overflow-hidden">
+    <div
+      ref={sectionRef}
+      className="flex flex-col min-h-screen bg-[#f5f5f7] pt-20 overflow-hidden"
+    >
       <Header />
 
       <main className="flex-grow p-6">
@@ -171,7 +176,7 @@ export default function ProductDetail() {
           {/* LEFT: Description */}
           <div className="lg:w-1/4 flex flex-col justify-center text-gray-700 text-lg leading-relaxed">
             <div>
-              <h2 className="text-2xl font-semibold mb-4 text-red-600">
+              <h2 className="text-2xl font-plusjakarta mb-4 text-red-600">
                 Description
               </h2>
               <p>{product.description}</p>
@@ -212,16 +217,16 @@ export default function ProductDetail() {
 
           {/* RIGHT: Product Info */}
           <div className="lg:w-1/4 flex flex-col gap-5">
-            <h1 className="text-3xl font-bold text-red-600">
+            <h1 className="text-3xl font-plusjakarta font-bold text-red-600">
               {product.productName}
             </h1>
-            <p className="text-2xl font-semibold text-gray-900">
+            <p className="text-2xl font-plusjakarta text-gray-900">
               ₹{product.price}
             </p>
 
             {/* Color Options */}
             <div>
-              <h3 className="font-semibold mb-2">Available Colors:</h3>
+              <h3 className="font-plusjakarta mb-2">Available Colors:</h3>
               <div className="flex gap-3">
                 {product.colors.map((color) => (
                   <div
@@ -240,7 +245,7 @@ export default function ProductDetail() {
 
             {/* Sizes & Quantity */}
             <div>
-              <h3 className="font-semibold mb-2">Select Size:</h3>
+              <h3 className="font-plusjakarta mb-2">Select Size:</h3>
               <div className="flex gap-3 mb-2">
                 {product.sizes.map((s) => (
                   <button
@@ -249,7 +254,7 @@ export default function ProductDetail() {
                       setSelectedSize(s.size)
                       changeQuantity(1) // Reset quantity when size changes
                     }}
-                    className={`px-4 py-2 border rounded transition ${
+                    className={`px-4 py-2 font-plusjakarta border rounded transition ${
                       selectedSize === s.size
                         ? "bg-red-600 text-white border-red-600"
                         : "bg-white text-red-600 border-red-600 hover:bg-red-100"
@@ -262,10 +267,10 @@ export default function ProductDetail() {
 
               {/* Animated Quantity Counter */}
               <div className="flex items-center gap-3 mt-8">
-                <span className="font-semibold">Quantity:</span>
+                <span className="font-plusjakarta">Quantity:</span>
                 <button
                   onClick={() => changeQuantity(Math.max(1, quantity - 1))}
-                  className="flex items-center justify-center w-8 h-8 rounded-full bg-red-50 text-red-600 hover:bg-red-100 hover:scale-110 transition-transform shadow-md"
+                  className="flex items-center font-plusjakarta justify-center w-8 h-8 rounded-full bg-red-50 text-red-600 hover:bg-red-100 hover:scale-110 transition-transform shadow-md"
                 >
                   <FaMinus />
                 </button>
@@ -284,7 +289,7 @@ export default function ProductDetail() {
                         opacity: 0,
                       }}
                       transition={{ duration: 0.3 }}
-                      className="absolute w-full text-center font-semibold text-gray-800"
+                      className="absolute w-full text-center font-plusjakarta text-gray-800"
                     >
                       {quantity}
                     </motion.div>
@@ -304,26 +309,32 @@ export default function ProductDetail() {
 
             {/* Action Buttons */}
             <div className="flex flex-col gap-4 mt-6 w-full lg:w-3/4">
-              <button className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 px-4 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105">
+              <button className="w-full font-plusjakarta bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 px-4 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105">
                 Buy Now
               </button>
 
-              <button className="w-full flex items-center justify-center gap-2 border border-red-600 text-red-600 font-bold py-3 px-4 rounded-lg hover:bg-red-50 shadow-sm transition-all duration-300 transform hover:scale-105">
+              <button className="w-full font-plusjakarta flex items-center justify-center gap-2 border border-red-600 text-red-600 font-bold py-3 px-4 rounded-lg hover:bg-red-50 shadow-sm transition-all duration-300 transform hover:scale-105">
                 <FaShoppingCart /> Add to Cart
               </button>
 
-              <button className="flex items-center justify-center gap-2 border border-gray-300 text-gray-600 hover:text-red-600 hover:border-red-600 shadow-sm transition-all duration-300 transform hover:scale-105 py-3 px-4 rounded-lg w-full">
+              <button className="flex font-plusjakarta  items-center justify-center gap-2 border border-gray-300 text-gray-600 hover:text-red-600 hover:border-red-600 shadow-sm transition-all duration-300 transform hover:scale-105 py-3 px-4 rounded-lg w-full">
                 <FaHeart size={18} /> Add to Wishlist
               </button>
             </div>
           </div>
         </div>
+        <motion.h2
+          initial={{ opacity: 0, x: 50 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 1 }}
+          className="font-plusjakarta text-red-600 font-bold mt-20 ml-8 sm:ml-16 md:ml-24 tracking-wide uppercase"
+        >
+          <span className="text-xl sm:text-4xl md:text-5xl block">YOU MAY</span>
+          <span className="text-9xl lowercase block">also like</span>
+        </motion.h2>
 
         {/* Related Products */}
-        <div className="relative py-10 px-4 md:px-8 lg:px-12">
-          <h2 className="text-2xl font-semibold mb-6 text-red-600">
-            Related Products
-          </h2>
+        <div className="relative px-4 md:px-8 lg:px-12">
           <RelatedProductsSlider relatedProducts={relatedProducts} />
         </div>
       </main>

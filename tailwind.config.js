@@ -14,6 +14,7 @@ export default {
   			],
 			josefin: ['"Josefin Sans"', 'sans-serif'],
 			worksans: ['"Work Sans"', 'sans-serif'],
+			plusjakarta: ['Plus Jakarta Sans', 'sans-serif'],
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

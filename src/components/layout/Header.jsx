@@ -9,44 +9,8 @@ import { SideDrawer } from "./SideDrawer"
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeCategory, setActiveCategory] = useState(null) // men | women
+
   const [activeDrawer, setActiveDrawer] = useState(null) // cart | wishlist
-
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: "Silk Dress",
-      image: womenDressImg,
-      size: "M",
-      color: "Red",
-      quantity: 1,
-      price: 1200,
-    },
-    {
-      id: 2,
-      name: "Casual T-Shirt",
-      image: unisexTshirtImg,
-      size: "L",
-      color: "Black",
-      quantity: 2,
-      price: 800,
-    },
-  ])
-
-  const handleQuantityChange = (id, delta) => {
-    setCartItems((prev) =>
-      prev
-        .map((item) =>
-          item.id === id
-            ? { ...item, quantity: Math.max(1, item.quantity + delta) }
-            : item
-        )
-        .filter((item) => item.quantity > 0)
-    )
-  }
-
-  const removeItem = (id) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id))
-  }
 
   const isActive = Boolean(activeCategory)
 
@@ -75,18 +39,18 @@ export function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <span
-              className={`font-robotoslab text-2xl font-bold ${
+              className={`font-plusjakarta text-2xl font-bold ${
                 isActive ? "text-white" : "text-black"
               }`}
             >
-              Elturn
+              ELTURN
             </span>
           </Link>
 
           {/* NAV */}
           <nav className="hidden md:flex items-center gap-8 relative">
             <button
-              className={`relative font-worksans text-lg font-normal transition-colors ${
+              className={`relative font-plusjakarta text-lg font-normal transition-colors ${
                 isActive
                   ? "text-white hover:text-gray-100"
                   : "text-black hover:text-red-600"
@@ -99,7 +63,7 @@ export function Header() {
               onMouseEnter={() => setActiveCategory("men")}
             >
               <button
-                className={`font-worksans text-lg font-normal transition-colors ${
+                className={`font-plusjakarta text-lg font-normal transition-colors ${
                   isActive
                     ? "text-white hover:text-gray-100"
                     : "text-black hover:text-red-600"
@@ -113,7 +77,7 @@ export function Header() {
               onMouseEnter={() => setActiveCategory("women")}
             >
               <button
-                className={`font-worksans text-lg font-normal transition-colors ${
+                className={`font-plusjakarta text-lg font-normal transition-colors ${
                   isActive
                     ? "text-white hover:text-gray-100"
                     : "text-black hover:text-red-600"
@@ -149,11 +113,6 @@ export function Header() {
                   isActive ? "text-white" : "text-black"
                 }`}
               />
-              {cartItems.length > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">
-                  {cartItems.length}
-                </span>
-              )}
             </div>
             <Menu
               className={`h-5 w-5 md:hidden cursor-pointer ${
@@ -180,7 +139,7 @@ export function Header() {
               {activeCategory === "men" ? (
                 <>
                   <div>
-                    <h3 className="text-xl font-semibold mb-4">
+                    <h3 className="text-xl font-plusjakarta mb-4">
                       {menCategory.title}
                     </h3>
                     <ul className="space-y-2">
@@ -202,7 +161,7 @@ export function Header() {
               ) : (
                 <>
                   <div>
-                    <h3 className="text-xl font-semibold mb-4">
+                    <h3 className="text-xl font-plusjakarta mb-4">
                       {womenCategory.title}
                     </h3>
                     <ul className="space-y-2">
@@ -227,14 +186,11 @@ export function Header() {
         )}
       </AnimatePresence>
 
-    
       {/* ===== SIDE DRAWER ===== */}
       <SideDrawer
         activeDrawer={activeDrawer}
         setActiveDrawer={setActiveDrawer}
-        cartItems={cartItems}
-        handleQuantityChange={handleQuantityChange}
-        removeItem={removeItem}
+        whislist
       />
     </header>
   )

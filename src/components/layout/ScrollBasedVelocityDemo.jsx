@@ -5,7 +5,7 @@ import {
 
 export function ScrollBasedVelocityDemo() {
   return (
-    <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
+    <div className="relative font-plusjakarta flex w-full flex-col items-center justify-center overflow-hidden">
       <ScrollVelocityContainer className="text-4xl font-bold tracking-[-0.02em] md:text-7xl md:leading-[5rem]">
         <ScrollVelocityRow baseVelocity={20} direction={1}>
            Essentions Elturn 

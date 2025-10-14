@@ -34,7 +34,7 @@ const ShopByCategory = () => {
         transition={{ duration: 2.5 }} // How long it takes
         className="text-center mb-5"
       >
-        <h2 className="text-4xl font-worksans font-bold text-gray-900 mb-3">
+        <h2 className="text-4xl font-plusjakarta font-bold text-gray-900 mb-3">
           SHOP BY CATEGORY
         </h2>
       </motion.h1>
@@ -45,7 +45,7 @@ const ShopByCategory = () => {
         transition={{ duration: 2.5, delay: 0.2 }} // How long it takes
         className="text-center mb-10"
       >
-        <p className="text-gray-600 font-worksans max-w-2xl mx-auto">
+        <p className="text-gray-600 font-plusjakarta max-w-2xl mx-auto">
           Discover curated picks across our most-loved departments. Explore what
           inspires you today.
         </p>
@@ -66,7 +66,7 @@ const ShopByCategory = () => {
                 src={category.image}
                 alt={category.name}
                 loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                className="w-full h-full font-plusjakarta object-cover transition-transform duration-700 group-hover:scale-110"
               />
             </div>
 
@@ -74,8 +74,8 @@ const ShopByCategory = () => {
 
             <div className="absolute inset-0 flex flex-col justify-end items-center text-center text-white p-6">
               {category.name}
-              <p className="text-sm mb-4">{category.description}</p>
-              <button className="px-5 py-2 bg-white text-black font-semibold rounded-full hover:bg-red-500 hover:text-white transition">
+              <p className="text-sm font-plusjakarta mb-4">{category.description}</p>
+              <button className="px-5 py-2 font-plusjakarta bg-white text-black rounded-full hover:bg-red-500 hover:text-white transition">
                 {category.button}
               </button>
             </div>

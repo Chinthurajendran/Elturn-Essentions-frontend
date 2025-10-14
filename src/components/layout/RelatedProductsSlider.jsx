@@ -91,17 +91,17 @@ export default function RelatedProductsSlider({ relatedProducts }) {
                   </div>
 
                   {/* Product name */}
-                  <h3 className="text-gray-900 font-semibold text-base sm:text-lg">
+                  <h3 className="text-gray-900 font-plusjakarta text-base sm:text-lg">
                     {product.name}
                   </h3>
 
                   {/* Category */}
-                  <p className="text-gray-500 mt-1 text-sm">
+                  <p className="text-gray-500 font-plusjakarta mt-1 text-sm">
                     {product.category}
                   </p>
 
                   {/* Price */}
-                  <p className="text-red-600 font-bold mt-2 text-base sm:text-lg">
+                  <p className="text-red-600 font-plusjakarta  font-bold mt-2 text-base sm:text-lg">
                     {product.price}
                   </p>
                 </div>
