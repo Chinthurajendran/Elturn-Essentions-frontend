@@ -72,8 +72,8 @@ export default function RelatedProductsSlider({ relatedProducts }) {
                 src={product.image}
                 alt={product.name}
                 loading="lazy"
-                // className="w-full h-[250px] sm:h-[280px] md:h-[300px] object-cover transition-transform duration-700 "
-                className="w-full h-[250px]  sm:h-[280px] md:h-[300px] object-cover transition-transform duration-700 group-hover:scale-110"
+                className="w-full h-[350px] sm:h-[400px] md:h-[400px] object-cover transition-transform duration-700 "
+
               />
 
               {/* Hover Button */}
