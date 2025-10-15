@@ -117,15 +117,69 @@ const products = [
     category: "Tops",
     fabric: "Georgette",
   },
+    {
+    id:11,
+    productName: "Urban T-Shirt",
+    price: 499,
+    images: [prod1, prod2],
+    sizes: ["M", "L"],
+    colors: ["#000000", "#FFFFFF"],
+    category: "Unisex T-Shirt",
+    fabric: "Cotton",
+  },
+    {
+    id: 12,
+    productName: "Urban T-Shirt",
+    price: 499,
+    images: [prod1, prod2],
+    sizes: ["M", "L"],
+    colors: ["#000000", "#FFFFFF"],
+    category: "Unisex T-Shirt",
+    fabric: "Cotton",
+  },
+    {
+    id: 13,
+    productName: "Urban T-Shirt",
+    price: 499,
+    images: [prod1, prod2],
+    sizes: ["M", "L"],
+    colors: ["#000000", "#FFFFFF"],
+    category: "Unisex T-Shirt",
+    fabric: "Cotton",
+  },
+    {
+    id: 14,
+    productName: "Urban T-Shirt",
+    price: 499,
+    images: [prod1, prod2],
+    sizes: ["M", "L"],
+    colors: ["#000000", "#FFFFFF"],
+    category: "Unisex T-Shirt",
+    fabric: "Cotton",
+  },
+    {
+    id: 15,
+    productName: "Urban T-Shirt",
+    price: 499,
+    images: [prod1, prod2],
+    sizes: ["M", "L"],
+    colors: ["#000000", "#FFFFFF"],
+    category: "Unisex T-Shirt",
+    fabric: "Cotton",
+  },
 ]
-
 
 export function ProductPage() {
   const navigate = useNavigate()
   const categories = ["Tops", "Lehenga", "Unisex T-Shirt", "Minimalist Shirt"]
   const [direction, setDirection] = useState(1) // 1 = next, -1 = prev
   const [selectedCategory, setSelectedCategory] = useState("Unisex T-Shirt")
-  const [filters, setFilters] = useState({ color: "", size: "", fabric: "", sort: "" })
+  const [filters, setFilters] = useState({
+    color: "",
+    size: "",
+    fabric: "",
+    sort: "",
+  })
   const [showFilter, setShowFilter] = useState(false)
   const [hoveredProduct, setHoveredProduct] = useState(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(
@@ -139,11 +193,16 @@ export function ProductPage() {
 
   const filteredProducts = useMemo(() => {
     let result = categoryProducts
-    if (filters.color) result = result.filter((p) => p.colors.includes(filters.color))
-    if (filters.size) result = result.filter((p) => p.sizes.includes(filters.size))
-    if (filters.fabric) result = result.filter((p) => p.fabric === filters.fabric)
-    if (filters.sort === "high") result = [...result].sort((a, b) => b.price - a.price)
-    else if (filters.sort === "low") result = [...result].sort((a, b) => a.price - b.price)
+    if (filters.color)
+      result = result.filter((p) => p.colors.includes(filters.color))
+    if (filters.size)
+      result = result.filter((p) => p.sizes.includes(filters.size))
+    if (filters.fabric)
+      result = result.filter((p) => p.fabric === filters.fabric)
+    if (filters.sort === "high")
+      result = [...result].sort((a, b) => b.price - a.price)
+    else if (filters.sort === "low")
+      result = [...result].sort((a, b) => a.price - b.price)
     return result
   }, [categoryProducts, filters])
 
@@ -153,7 +212,10 @@ export function ProductPage() {
 
   const handleNextImage = (productId, totalImages) => {
     setDirection(1)
-    setCurrentImageIndex((prev) => ({ ...prev, [productId]: (prev[productId] + 1) % totalImages }))
+    setCurrentImageIndex((prev) => ({
+      ...prev,
+      [productId]: (prev[productId] + 1) % totalImages,
+    }))
   }
 
   const handlePrevImage = (productId, totalImages) => {
@@ -170,7 +232,9 @@ export function ProductPage() {
 
       {/* Category Title & Filter Button */}
       <div className="flex justify-between  font-plusjakarta items-center mb-6 lg:px-8">
-        <h2 className="font-plusjakarta text-2xl font-bold">{selectedCategory}</h2>
+        <h2 className="font-plusjakarta text-2xl font-bold">
+          {selectedCategory}
+        </h2>
         <button
           className="flex font-plusjakarta items-center gap-2 border px-4 py-2 rounded hover:bg-gray-100"
           onClick={() => setShowFilter(true)}
@@ -186,11 +250,14 @@ export function ProductPage() {
           <button
             key={cat}
             onClick={() => setSelectedCategory(cat)}
-            className={`px-4 py-2 rounded-full border transition-all ${
-              selectedCategory === cat
-                ? "bg-black text-white border-black"
-                : "border-gray-300 hover:bg-gray-100"
-            }`}
+            className={`relative px-4 py-2 transition-all duration-300
+        ${
+          selectedCategory === cat
+            ? "text-black after:scale-x-100 after:bg-black"
+            : "text-black-600 hover:text-black after:scale-x-0 hover:after:scale-x-100 after:bg-black"
+        }
+        after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full 
+        after:origin-left after:transition-transform after:duration-300 after:rounded-full`}
           >
             {cat}
           </button>
@@ -205,7 +272,9 @@ export function ProductPage() {
             <motion.div
               key={product.id}
               className="relative group cursor-pointer"
-              onClick={() => navigate(`/product/${product.id}`, { state: product })}
+              onClick={() =>
+                navigate(`/product/${product.id}`, { state: product })
+              }
               onMouseEnter={() => setHoveredProduct(product.id)}
               onMouseLeave={() => setHoveredProduct(null)}
             >
