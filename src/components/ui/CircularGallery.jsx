@@ -1,5 +1,18 @@
 import { Camera, Mesh, Plane, Program, Renderer, Texture, Transform } from 'ogl';
 import { useEffect, useRef } from 'react';
+import img1 from "../../assets/T-shirt1.jpg"
+import img2 from "../../assets/T-shirt2.jpg"
+import img3 from "../../assets/T-shirt3.jpg"
+import img4 from "../../assets/T-shirt4.jpg"
+import img5 from "../../assets/T-shirt5.jpg"
+import img6 from "../../assets/T-shirt6.jpg"
+import img7 from "../../assets/T-shirt7.jpg"
+import img8 from "../../assets/T-shirt8.jpg"
+import img9 from "../../assets/T-shirt9.jpg"
+import img10 from "../../assets/T-shirt10.jpg"
+import img11 from "../../assets/T-shirt11.jpg"
+import img12 from "../../assets/T-shirt12.jpg"
+
 
 function debounce(func, wait) {
   let timeout;
@@ -345,18 +358,18 @@ class App {
 
   createMedias(items, bend, textColor, borderRadius, font) {
     const defaultItems = [
-      { image: `https://picsum.photos/seed/1/800/600?grayscale`, text: 'Bridge' },
-      { image: `https://picsum.photos/seed/2/800/600?grayscale`, text: 'Desk Setup' },
-      { image: `https://picsum.photos/seed/3/800/600?grayscale`, text: 'Waterfall' },
-      { image: `https://picsum.photos/seed/4/800/600?grayscale`, text: 'Strawberries' },
-      { image: `https://picsum.photos/seed/5/800/600?grayscale`, text: 'Deep Diving' },
-      { image: `https://picsum.photos/seed/16/800/600?grayscale`, text: 'Train Track' },
-      { image: `https://picsum.photos/seed/17/800/600?grayscale`, text: 'Santorini' },
-      { image: `https://picsum.photos/seed/8/800/600?grayscale`, text: 'Blurry Lights' },
-      { image: `https://picsum.photos/seed/9/800/600?grayscale`, text: 'New York' },
-      { image: `https://picsum.photos/seed/10/800/600?grayscale`, text: 'Good Boy' },
-      { image: `https://picsum.photos/seed/21/800/600?grayscale`, text: 'Coastline' },
-      { image: `https://picsum.photos/seed/12/800/600?grayscale`, text: 'Palm Trees' }
+      { image: img1, text: 'Bridge' },
+      { image: img2, text: 'Desk Setup' },
+      { image: img3, text: 'Waterfall' },
+      { image: img4, text: 'Strawberries' },
+      { image: img5, text: 'Deep Diving' },
+      { image: img6, text: 'Train Track' },
+      { image: img7, text: 'Santorini' },
+      { image: img8, text: 'Blurry Lights' },
+      { image: img9, text: 'New York' },
+      { image: img10, text: 'Good Boy' },
+      { image: img11, text: 'Coastline' },
+      { image: img12, text: 'Palm Trees' }
     ];
 
     const galleryItems = items && items.length ? items : defaultItems;

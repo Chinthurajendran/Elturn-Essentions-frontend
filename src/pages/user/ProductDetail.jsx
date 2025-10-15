@@ -254,7 +254,7 @@ export default function ProductDetail() {
                       setSelectedSize(s.size)
                       changeQuantity(1) // Reset quantity when size changes
                     }}
-                    className={`px-4 py-2 font-plusjakarta border rounded transition ${
+                    className={`px-4 py-2 font-plusjakarta transition ${
                       selectedSize === s.size
                         ? "bg-red-600 text-white border-red-600"
                         : "bg-white text-red-600 border-red-600 hover:bg-red-100"

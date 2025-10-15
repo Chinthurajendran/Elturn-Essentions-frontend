@@ -16,7 +16,7 @@ export function Header() {
 
   const menCategory = {
     title: "Men’s Clothing",
-    items: ["Shirts", "T-Shirts", "Jeans", "Jackets", "Suits", "Hoodies"],
+    items: ["Shirts", "T-Shirts", "Hoodies"],
     image: unisexTshirtImg,
   }
 
@@ -25,10 +25,11 @@ export function Header() {
     items: ["Dresses", "Tops", "Jeans", "Sarees", "Lehenga"],
     image: womenDressImg,
   }
+  console.log(activeCategory)
 
   return (
     <header
-      className={`absolute top-0 left-0 w-full z-50 transition-all duration-300 ${
+      className={`absolute top-0 left-0 w-full z-50 transition-all duration-0 ease-in-out ${
         isActive ? "bg-red-600 text-white" : "bg-transparent text-black"
       }`}
       onMouseLeave={() => setActiveCategory(null)}
@@ -49,15 +50,6 @@ export function Header() {
 
           {/* NAV */}
           <nav className="hidden md:flex items-center gap-8 relative">
-            <button
-              className={`relative font-plusjakarta text-lg font-normal transition-colors ${
-                isActive
-                  ? "text-white hover:text-gray-100"
-                  : "text-black hover:text-red-600"
-              }`}
-            >
-              HOME
-            </button>
             <div
               className="relative"
               onMouseEnter={() => setActiveCategory("men")}
@@ -132,7 +124,7 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
+            transition={{ duration: 0.0, ease: "easeInOut" }}
             className="absolute top-16 left-0 w-full bg-red-600 text-white shadow-lg z-40 overflow-hidden"
           >
             <div className="container mx-auto px-8 py-10 grid grid-cols-3 gap-10">
@@ -150,13 +142,13 @@ export function Header() {
                       ))}
                     </ul>
                   </div>
-                  <div className="col-span-2 flex justify-center items-center">
+                  {/* <div className="col-span-2 flex justify-center items-center">
                     <img
                       src={menCategory.image}
                       alt="Men"
                       className="w-80 h-80 object-cover rounded-2xl shadow-md"
                     />
-                  </div>
+                  </div> */}
                 </>
               ) : (
                 <>
@@ -172,13 +164,13 @@ export function Header() {
                       ))}
                     </ul>
                   </div>
-                  <div className="col-span-2 flex justify-center items-center">
+                  {/* <div className="col-span-2 flex justify-center items-center">
                     <img
                       src={womenCategory.image}
                       alt="Women"
                       className="w-80 h-80 object-cover rounded-2xl shadow-md"
                     />
-                  </div>
+                  </div> */}
                 </>
               )}
             </div>

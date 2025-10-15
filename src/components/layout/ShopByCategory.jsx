@@ -3,6 +3,7 @@ import { motion } from "framer-motion"
 import womenDressImg from "../../assets/women.jpg"
 import unisexTshirtImg from "../../assets/men.jpg"
 import minimalistShirtImg from "../../assets/minimalist.jpg"
+import { useNavigate } from "react-router-dom"
 
 const categories = [
   {
@@ -26,6 +27,12 @@ const categories = [
 ]
 
 const ShopByCategory = () => {
+    const navigate = useNavigate()
+  
+  const handleProductClick = (categoriesid) => {
+    navigate(`ProductPage`)
+  }
+
   return (
     <section id="categories" className="py-10 ">
       <motion.h1
@@ -75,7 +82,8 @@ const ShopByCategory = () => {
             <div className="absolute inset-0 flex flex-col justify-end items-center text-center text-white p-6">
               {category.name}
               <p className="text-sm font-plusjakarta mb-4">{category.description}</p>
-              <button className="px-5 py-2 font-plusjakarta bg-white text-black rounded-full hover:bg-red-500 hover:text-white transition">
+              <button className="px-5 py-2 font-plusjakarta bg-white text-black rounded-full hover:bg-red-500 hover:text-white transition" 
+              onClick={() => handleProductClick(categories.id)}>
                 {category.button}
               </button>
             </div>
