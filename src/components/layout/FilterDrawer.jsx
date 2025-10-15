@@ -75,6 +75,7 @@ export function FilterDrawer({
               </label>
               {openSections.sort ? <Minus size={16} /> : <Plus size={16} />}
             </div>
+
             <AnimatePresence>
               {openSections.sort && (
                 <motion.div
@@ -83,17 +84,29 @@ export function FilterDrawer({
                   exit={{ height: 0, opacity: 0 }}
                   className="overflow-hidden mt-2"
                 >
-                  <select
-                    className="w-full border p-2 rounded"
-                    value={filters.sort}
-                    onChange={(e) =>
-                      setFilters((f) => ({ ...f, sort: e.target.value }))
-                    }
-                  >
-                    <option value="">Default</option>
-                    <option value="low">Price: Low to High</option>
-                    <option value="high">Price: High to Low</option>
-                  </select>
+                  <div className="flex flex-col gap-2">
+                    {[
+                      { label: "Alphabetically, A-Z", value: "az" },
+                      { label: "Alphabetically, Z-A", value: "za" },
+                      { label: "Price, low to high", value: "low" },
+                      { label: "Price, high to low", value: "high" },
+                    ].map((option) => (
+                      <button
+                        key={option.value}
+                        onClick={() =>
+                          setFilters((f) => ({ ...f, sort: option.value }))
+                        }
+                        className={`text-left text-sm hover:underline ${
+                          filters.sort === option.value
+                            ? "font-semibold text-black"
+                            : "text-gray-600"
+                        }`}
+                      >
+                        {option.label}
+                        {filters.sort === option.value && " ✓"}
+                      </button>
+                    ))}
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>

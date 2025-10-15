@@ -191,20 +191,32 @@ export function ProductPage() {
     [selectedCategory]
   )
 
-  const filteredProducts = useMemo(() => {
-    let result = categoryProducts
-    if (filters.color)
-      result = result.filter((p) => p.colors.includes(filters.color))
-    if (filters.size)
-      result = result.filter((p) => p.sizes.includes(filters.size))
-    if (filters.fabric)
-      result = result.filter((p) => p.fabric === filters.fabric)
-    if (filters.sort === "high")
-      result = [...result].sort((a, b) => b.price - a.price)
-    else if (filters.sort === "low")
-      result = [...result].sort((a, b) => a.price - b.price)
-    return result
-  }, [categoryProducts, filters])
+const filteredProducts = useMemo(() => {
+  let result = categoryProducts;
+
+  if (filters.color)
+    result = result.filter((p) => p.colors.includes(filters.color));
+  if (filters.size)
+    result = result.filter((p) => p.sizes.includes(filters.size));
+  if (filters.fabric)
+    result = result.filter((p) => p.fabric === filters.fabric);
+
+  if (filters.sort === "high") {
+    result = [...result].sort((a, b) => b.price - a.price);
+  } else if (filters.sort === "low") {
+    result = [...result].sort((a, b) => a.price - b.price);
+  } else if (filters.sort === "az") {
+    result = [...result].sort((a, b) =>
+      a.productName.localeCompare(b.productName)
+    );
+  } else if (filters.sort === "za") {
+    result = [...result].sort((a, b) =>
+      b.productName.localeCompare(a.productName)
+    );
+  }
+
+  return result;
+}, [categoryProducts, filters]);
 
   const uniqueColors = [...new Set(categoryProducts.flatMap((p) => p.colors))]
   const uniqueSizes = [...new Set(categoryProducts.flatMap((p) => p.sizes))]
