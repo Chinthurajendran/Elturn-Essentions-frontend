@@ -30,7 +30,7 @@ function Home() {
         />
       </div>
 
-      <CustomerTestimonials />
+      {/* <CustomerTestimonials /> */}
       <ScrollingTestimonials/>
       <Footer />
     </div>

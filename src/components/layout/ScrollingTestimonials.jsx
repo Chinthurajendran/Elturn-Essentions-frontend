@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from "react"
 
-import img1 from "../../assets/image.jpg"
-import img2 from "../../assets/image.jpg"
-import img3 from "../../assets/image.jpg"
-import img4 from "../../assets/image.jpg"
-import img5 from "../../assets/image.jpg"
-import img6 from "../../assets/image.jpg"
+import img1 from "../../assets/customer1.jpg"
+import img2 from "../../assets/customer2.jpg"
+import img3 from "../../assets/customer3.jpg"
+import img4 from "../../assets/customer4.jpg"
+import img5 from "../../assets/customer5.jpg"
+import img6 from "../../assets/customer6.jpg"
 
 const testimonials = [
   {
@@ -20,38 +20,36 @@ const testimonials = [
   {
     id: 2,
     name: "Paul A.",
-    title: "Founder",
-    company: "XYZ",
+    title: "Designer",
+    company: "ABC",
     image: img2,
     quote:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa nostrum labore dolor facilis.",
+      "I love the experience! Everything was smooth and beautifully designed.",
   },
   {
     id: 3,
     name: "Cindy J.",
-    title: "Founder",
-    company: "XYZ",
+    title: "Manager",
+    company: "PQR",
     image: img3,
     quote:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa nostrum labore dolor facilis.",
+      "Amazing service! Highly recommended for professionals looking for quality.",
   },
   {
     id: 4,
     name: "Danica W.",
-    title: "Founder",
-    company: "XYZ",
+    title: "Developer",
+    company: "LMN",
     image: img4,
-    quote:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa nostrum labore dolor facilis.",
+    quote: "Fantastic experience from start to finish!",
   },
   {
     id: 5,
     name: "Peter H.",
-    title: "Founder",
-    company: "XYZ",
+    title: "Consultant",
+    company: "DEF",
     image: img5,
-    quote:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa nostrum labore dolor facilis.",
+    quote: "Customer support was top-notch. Really satisfied!",
   },
   {
     id: 6,
@@ -59,78 +57,106 @@ const testimonials = [
     title: "Founder",
     company: "XYZ",
     image: img6,
-    quote:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa nostrum labore dolor facilis.",
+    quote: "A wonderful experience, I’ll definitely come back again.",
   },
 ]
 
+// Helper: create multiple rows with duplicates
+const splitIntoRows = (data, rows) => {
+  const itemsPerRow = Math.ceil(data.length / rows)
+  const result = []
+  for (let i = 0; i < rows; i++) {
+    result.push([...data.slice(i * itemsPerRow, (i + 1) * itemsPerRow)])
+  }
+  return result
+}
+
 export default function ScrollingTestimonials() {
-  const scrollRef = useRef(null)
+  const rowRefs = [useRef(null), useRef(null), useRef(null)]
 
   useEffect(() => {
-    const scrollContainer = scrollRef.current
-    if (!scrollContainer) return
+    // Slower speed for first and last rows, faster for center
+    const speeds = [0.6, 1.5, 0.9]
+    // Center row (index 1) goes right, others go left
+    const directions = [-1, 1, -1]
+    const frames = []
 
-    let position = 0
-    let animationFrame
+    rowRefs.forEach((ref, idx) => {
+      const container = ref.current
+      if (!container) return
 
-    const scroll = () => {
-      position -= 1 // move left
-      scrollContainer.style.transform = `translateX(${position}px)`
+      // Start center row from negative position for left-to-right scroll
+      let pos = directions[idx] === 1 ? -(container.scrollWidth / 2) : 0
 
-      const width = scrollContainer.scrollWidth / 2
-      if (Math.abs(position) >= width) {
-        position = 0
+      const animate = () => {
+        pos += speeds[idx] * directions[idx]
+        container.style.transform = `translateX(${pos}px)`
+        const width = container.scrollWidth / 2
+        
+        // Reset position based on direction for seamless loop
+        if (directions[idx] === -1 && pos <= -width) {
+          pos = 0
+        } else if (directions[idx] === 1 && pos >= 0) {
+          pos = -width
+        }
+        
+        frames[idx] = requestAnimationFrame(animate)
       }
 
-      animationFrame = requestAnimationFrame(scroll)
-    }
+      frames[idx] = requestAnimationFrame(animate)
+    })
 
-    animationFrame = requestAnimationFrame(scroll)
-    return () => cancelAnimationFrame(animationFrame)
+    return () => frames.forEach((f) => cancelAnimationFrame(f))
   }, [])
 
+  const rows = splitIntoRows([...testimonials, ...testimonials], 3)
+
   return (
-    <section className="w-full py-20 overflow-hidden bg-white relative">
+    <section className="w-full py-20 overflow-hidden bg-gray-50 relative">
       <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold">Testimonials</h2>
+        <h2 className="text-3xl md:text-4xl font-bold">
+          What Our Customers Say
+        </h2>
         <p className="text-gray-500 mt-2">
-          What our customers say about us
+          Real experiences from our valued customers
         </p>
       </div>
 
-      <div className="relative w-full overflow-hidden">
-        <div
-          ref={scrollRef}
-          className="flex gap-6 will-change-transform"
-          style={{
-            width: "max-content",
-            display: "flex",
-          }}
-        >
-          {[...testimonials, ...testimonials].map((t, i) => (
+      <div className="space-y-10">
+        {rows.map((row, i) => (
+          <div
+            key={i}
+            className="relative w-full overflow-hidden"
+          >
             <div
-              key={i}
-              className="w-80 flex-shrink-0 rounded-xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-lg transition-all"
+              ref={rowRefs[i]}
+              className="flex gap-6 will-change-transform"
+              style={{ width: "max-content", display: "flex" }}
             >
-              <div className="text-4xl text-gray-400 mb-4">“</div>
-              <p className="text-gray-700 mb-6 leading-relaxed">{t.quote}</p>
-              <div className="flex items-center gap-3 border-t border-gray-200 pt-4">
-                <img
-                  src={t.image}
-                  alt={t.name}
-                  className="w-12 h-12 rounded-full object-cover border"
-                />
-                <div>
-                  <p className="font-semibold text-gray-900">{t.name}</p>
-                  <p className="text-sm text-gray-500">
-                    {t.title} of {t.company}
-                  </p>
+              {[...row, ...row].map((t, j) => (
+                <div
+                  key={j}
+                  className="flex w-[550px] h-[190px] bg-white text-black rounded-2xl overflow-hidden flex-shrink-0 shadow-sm"
+                >
+                  <img
+                    src={t.image}
+                    alt={t.name}
+                    className="w-40 h-full object-cover rounded-l-2xl"
+                  />
+                  <div className="p-7 flex flex-col justify-center">
+                    <p className="font-semibold text-xl">{t.name}</p>
+                    <p className="text-base text-gray-600 mb-2">
+                      {t.title} of {t.company}
+                    </p>
+                    <p className="text-gray-700 text-base leading-relaxed">
+                      {t.quote}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   )
