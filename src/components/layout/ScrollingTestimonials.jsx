@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from "react"
+import React, { useRef } from "react"
+import { motion, useInView } from "framer-motion"
 
 import img1 from "../../assets/customer1.jpg"
 import img2 from "../../assets/customer2.jpg"
@@ -57,7 +58,7 @@ const testimonials = [
     title: "Founder",
     company: "XYZ",
     image: img6,
-    quote: "A wonderful experience, I’ll definitely come back again.",
+    quote: "A wonderful experience, I'll definitely come back again.",
   },
 ]
 
@@ -72,71 +73,67 @@ const splitIntoRows = (data, rows) => {
 }
 
 export default function ScrollingTestimonials() {
-  const rowRefs = [useRef(null), useRef(null), useRef(null)]
-
-  useEffect(() => {
-    // Slower speed for first and last rows, faster for center
-    const speeds = [0.6, 1.5, 0.9]
-    // Center row (index 1) goes right, others go left
-    const directions = [-1, 1, -1]
-    const frames = []
-
-    rowRefs.forEach((ref, idx) => {
-      const container = ref.current
-      if (!container) return
-
-      // Start center row from negative position for left-to-right scroll
-      let pos = directions[idx] === 1 ? -(container.scrollWidth / 2) : 0
-
-      const animate = () => {
-        pos += speeds[idx] * directions[idx]
-        container.style.transform = `translateX(${pos}px)`
-        const width = container.scrollWidth / 2
-        
-        // Reset position based on direction for seamless loop
-        if (directions[idx] === -1 && pos <= -width) {
-          pos = 0
-        } else if (directions[idx] === 1 && pos >= 0) {
-          pos = -width
-        }
-        
-        frames[idx] = requestAnimationFrame(animate)
-      }
-
-      frames[idx] = requestAnimationFrame(animate)
-    })
-
-    return () => frames.forEach((f) => cancelAnimationFrame(f))
-  }, [])
+  const sectionRef = useRef(null)
+  const isInView = useInView(sectionRef, { once: true, amount: 0.2 })
 
   const rows = splitIntoRows([...testimonials, ...testimonials], 3)
 
+  // Slower speed for first and last rows, faster for center
+  const speeds = [40, 25, 35]
+  // Center row (index 1) goes right, others go left
+  const directions = [-1, 1, -1]
+
   return (
-    <section className="w-full py-20 overflow-hidden bg-gray-50 relative">
-      <div className="text-center mb-12">
+    <section
+      ref={sectionRef}
+      className="w-full py-5 overflow-hidden bg-[#f5f5f7] relative"
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        transition={{ duration: 0.6 }}
+        className="text-center mb-12"
+      >
         <h2 className="text-3xl md:text-4xl font-bold">
           What Our Customers Say
         </h2>
         <p className="text-gray-500 mt-2">
           Real experiences from our valued customers
         </p>
-      </div>
+      </motion.div>
 
       <div className="space-y-10">
         {rows.map((row, i) => (
-          <div
-            key={i}
-            className="relative w-full overflow-hidden"
-          >
-            <div
-              ref={rowRefs[i]}
+          <div key={i} className="relative w-full overflow-hidden">
+            <motion.div
+              initial={{ opacity: 0, x: directions[i] === -1 ? 0 : "-50%" }}
+              animate={
+                isInView
+                  ? {
+                      opacity: 1,
+                      x: directions[i] === -1 ? [0, "-50%"] : ["-50%", 0],
+                    }
+                  : { opacity: 0 }
+              }
+              transition={{
+                opacity: { duration: 0.6, delay: i * 0.2 },
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: speeds[i],
+                  ease: "linear",
+                  delay: i * 0.2,
+                },
+              }}
               className="flex gap-6 will-change-transform"
-              style={{ width: "max-content", display: "flex" }}
+              style={{ width: "max-content" }}
             >
               {[...row, ...row].map((t, j) => (
-                <div
+                <motion.div
                   key={j}
-                  className="flex w-[550px] h-[190px] bg-white text-black rounded-2xl overflow-hidden flex-shrink-0 shadow-sm"
+                  whileHover={{ scale: 1.02, y: -5 }}
+                  transition={{ duration: 0.3 }}
+                  className="flex w-[550px] h-[190px] bg-white text-black rounded-2xl overflow-hidden flex-shrink-0 shadow-sm hover:shadow-lg transition-shadow cursor-pointer"
                 >
                   <img
                     src={t.image}
@@ -152,9 +149,9 @@ export default function ScrollingTestimonials() {
                       {t.quote}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         ))}
       </div>

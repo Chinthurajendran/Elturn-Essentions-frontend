@@ -7,6 +7,9 @@ import BestSellers from "../../components/layout/BestSellers"
 import { ScrollBasedVelocityDemo } from "../../components/layout/ScrollBasedVelocityDemo"
 import CircularGallery from "../../components/ui/CircularGallery"
 import ScrollingTestimonials from "../../components/layout/ScrollingTestimonials"
+import { RevealLinks } from "../../components/layout/RevealLinks"
+import HorizontalScrollCarousel from "../../components/layout/HorizontalScrollCarousel"
+import NewArrivals from "../../components/layout/NewArrivals"
 
 function Home() {
   return (
@@ -14,8 +17,9 @@ function Home() {
       <Section />
       <ShopByCategory />
       <ScrollBasedVelocityDemo />
+      <NewArrivals/>
       <BestSellers />
-      <div
+      {/* <div
         style={{
           height: "600px",
           position: "relative",
@@ -28,9 +32,11 @@ function Home() {
           scrollEase={0.02}
           font='bold 30px "Roboto Slab"'
         />
-      </div>
+      </div> */}
 
       {/* <CustomerTestimonials /> */}
+      {/* <RevealLinks/> */}
+      {/* <HorizontalScrollCarousel/> */}
       <ScrollingTestimonials/>
       <Footer />
     </div>
