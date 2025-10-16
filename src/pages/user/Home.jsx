@@ -6,6 +6,7 @@ import ShopByCategory from "../../components/layout/ShopByCategory"
 import BestSellers from "../../components/layout/BestSellers"
 import { ScrollBasedVelocityDemo } from "../../components/layout/ScrollBasedVelocityDemo"
 import CircularGallery from "../../components/ui/CircularGallery"
+import ScrollingTestimonials from "../../components/layout/ScrollingTestimonials"
 
 function Home() {
   return (
@@ -30,6 +31,7 @@ function Home() {
       </div>
 
       <CustomerTestimonials />
+      <ScrollingTestimonials/>
       <Footer />
     </div>
   )
