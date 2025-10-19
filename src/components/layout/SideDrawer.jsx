@@ -157,10 +157,6 @@ export function SideDrawer({ activeDrawer, setActiveDrawer }) {
   const handleCheckOutClick = () => {
     navigate(`/CheckoutPage`)
   }
-  //   const handleCheckOutClick = () => {
-  //   setActiveDrawer(null)
-  //   setTimeout(() => navigate("/CheckoutPage"), 300)
-  // }
 
   return (
     <AnimatePresence>

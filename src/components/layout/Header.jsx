@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import womenDressImg from "../../assets/women.jpg"
 import unisexTshirtImg from "../../assets/men.jpg"
 import { SideDrawer } from "./SideDrawer"
+import { useNavigate } from "react-router-dom"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -13,6 +14,7 @@ export function Header() {
   const [activeDrawer, setActiveDrawer] = useState(null) // cart | wishlist
 
   const isActive = Boolean(activeCategory)
+  const navigate = useNavigate()
 
   const menCategory = {
     title: "Men’s Clothing",
@@ -25,7 +27,9 @@ export function Header() {
     items: ["Dresses", "Tops", "Jeans", "Sarees", "Lehenga"],
     image: womenDressImg,
   }
-  console.log(activeCategory)
+  const handleAccountClick = () => {
+    navigate(`/AccountPage`)
+  }
 
   return (
     <header
@@ -88,6 +92,7 @@ export function Header() {
               }`}
             />
             <User
+              onClick={handleAccountClick}
               className={`h-5 w-5 cursor-pointer ${
                 isActive ? "text-white" : "text-black"
               }`}
