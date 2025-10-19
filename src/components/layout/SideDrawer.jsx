@@ -2,6 +2,7 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X } from "lucide-react"
+import { useNavigate } from "react-router-dom"
 
 // Dummy images (replace with actual imports)
 import img1 from "../../assets/T-shirt1.jpg"
@@ -11,6 +12,8 @@ import img4 from "../../assets/T-shirt4.jpg"
 import img5 from "../../assets/T-shirt5.jpg"
 
 export function SideDrawer({ activeDrawer, setActiveDrawer }) {
+  const navigate = useNavigate()
+
   // Dummy cart items with stock
   const [cartItems, setCartItems] = useState([
     {
@@ -150,6 +153,14 @@ export function SideDrawer({ activeDrawer, setActiveDrawer }) {
     (sum, item) => sum + item.price * item.quantity,
     0
   )
+
+  const handleCheckOutClick = () => {
+    navigate(`/CheckoutPage`)
+  }
+  //   const handleCheckOutClick = () => {
+  //   setActiveDrawer(null)
+  //   setTimeout(() => navigate("/CheckoutPage"), 300)
+  // }
 
   return (
     <AnimatePresence>
@@ -300,7 +311,10 @@ export function SideDrawer({ activeDrawer, setActiveDrawer }) {
                   <span>Total:</span>
                   <span>₹{totalAmount}</span>
                 </div>
-                <button className="w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700 transition">
+                <button
+                  className="w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700 transition"
+                  onClick={handleCheckOutClick}
+                >
                   Checkout
                 </button>
               </div>
