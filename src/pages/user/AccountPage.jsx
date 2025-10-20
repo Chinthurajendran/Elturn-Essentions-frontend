@@ -12,13 +12,28 @@ import {
   FaPhone,
   FaEnvelope,
   FaSignOutAlt,
+  FaCamera,
 } from "react-icons/fa"
+import { Header } from "../../components/layout/Header"
+import { Footer } from "../../components/layout/Footer"
 
 export default function AccountPageModern() {
-  const [profilePic, setProfilePic] = useState(
-    "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400"
-  )
+  // Profile state
+  const [profile, setProfile] = useState({
+    username: "JohnDoe",
+    email: "johndoe@example.com",
+    phone: "+91 9876543210",
+    dob: "",
+    gender: "Male",
+    profilePic:
+      "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400",
+  })
+
   const [activeTab, setActiveTab] = useState("profile")
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false)
+  const [tempProfile, setTempProfile] = useState(profile)
+
+  // Addresses
   const [addresses, setAddresses] = useState([
     {
       id: 1,
@@ -40,7 +55,8 @@ export default function AccountPageModern() {
     },
   ])
 
-  const [orders, setOrders] = useState([
+  // Orders
+  const [orders] = useState([
     {
       id: 1,
       product: "Classic Red T-Shirt",
@@ -70,12 +86,7 @@ export default function AccountPageModern() {
   const [editingAddress, setEditingAddress] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const handleProfilePicChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      setProfilePic(URL.createObjectURL(e.target.files[0]))
-    }
-  }
-
+  // Address modal handlers
   const openAddressModal = (addr = null) => {
     setEditingAddress(
       addr || {
@@ -110,47 +121,49 @@ export default function AccountPageModern() {
 
   const handleLogout = () => {
     if (window.confirm("Are you sure you want to logout?")) {
-      // Add your logout logic here
       console.log("User logged out")
-      // Example: redirect to login page or clear user session
     }
+  }
+
+  // Handle profile update modal
+  const handleProfileUpdate = () => {
+    setTempProfile(profile)
+    setIsProfileModalOpen(true)
+  }
+
+  const handleProfilePicChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setTempProfile({
+        ...tempProfile,
+        profilePic: URL.createObjectURL(e.target.files[0]),
+      })
+    }
+  }
+
+  const saveProfileChanges = () => {
+    setProfile(tempProfile)
+    setIsProfileModalOpen(false)
   }
 
   return (
     <div className="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
-      {/* Header */}
-      <div className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <h1 className="text-2xl font-bold text-gray-800">My Account</h1>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-6 py-8">
+      <Header />
+      <div className="max-w-7xl mx-auto px-6 pt-20 py-8">
+        <h1 className="text-3xl font-bold text-[#e60023] mb-10 text-left">
+          My Account
+        </h1>
         <div className="grid lg:grid-cols-4 gap-6">
           {/* Sidebar */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden sticky top-6">
-              {/* Profile Card */}
-
               <div
                 className="relative w-full h-64 text-white"
                 style={{
-                  backgroundImage: `url(${profilePic})`,
+                  backgroundImage: `url(${profile.profilePic})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
-              >
-                {/* Edit Button */}
-                <label className="absolute top-4 right-4 bg-white p-2 rounded-full cursor-pointer hover:bg-gray-100 transition shadow-lg z-10">
-                  <input
-                    type="file"
-                    accept="image/*"
-                    className="hidden"
-                    onChange={handleProfilePicChange}
-                  />
-                  <FaEdit className="text-[#e60023] text-sm" />
-                </label>
-              </div>
+              ></div>
 
               {/* Navigation */}
               <div className="p-2">
@@ -173,7 +186,6 @@ export default function AccountPageModern() {
                   </button>
                 ))}
 
-                {/* Logout Button */}
                 <button
                   onClick={handleLogout}
                   className="w-full flex items-center gap-3 px-4 py-3 rounded-xl mt-2 text-gray-600 hover:bg-red-50 hover:text-[#e60023] transition border-t border-gray-100"
@@ -188,6 +200,7 @@ export default function AccountPageModern() {
           {/* Main Content */}
           <div className="lg:col-span-3">
             <AnimatePresence mode="wait">
+              {/* Profile Tab */}
               {activeTab === "profile" && (
                 <motion.div
                   key="profile"
@@ -205,47 +218,42 @@ export default function AccountPageModern() {
                     <div className="space-y-4">
                       <div>
                         <label className="block text-sm font-semibold text-gray-600 mb-2">
-                          Full Name
-                        </label>
-                        <input
-                          type="text"
-                          defaultValue="John Doe"
-                          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#e60023] focus:border-transparent"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-semibold text-gray-600 mb-2">
                           Username
                         </label>
                         <input
                           type="text"
-                          defaultValue="JohnDoe"
-                          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#e60023] focus:border-transparent"
+                          value={profile.username}
+                          readOnly
+                          className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-50 cursor-not-allowed"
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-semibold text-gray-600 mb-2 flex items-center gap-2">
+                        <label className="flex text-sm font-semibold text-gray-600 mb-2 items-center gap-2">
                           <FaEnvelope className="text-[#e60023]" />
                           Email Address
                         </label>
+
                         <input
                           type="email"
-                          defaultValue="johndoe@example.com"
-                          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#e60023] focus:border-transparent"
+                          value={profile.email}
+                          readOnly
+                          className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-50 cursor-not-allowed"
                         />
                       </div>
                     </div>
 
                     <div className="space-y-4">
                       <div>
-                        <label className="block text-sm font-semibold text-gray-600 mb-2 flex items-center gap-2">
+                        <label className="flex text-sm font-semibold text-gray-600 mb-2 items-center gap-2">
                           <FaPhone className="text-[#e60023]" />
                           Phone Number
                         </label>
+
                         <input
                           type="tel"
-                          defaultValue="+91 9876543210"
-                          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#e60023] focus:border-transparent"
+                          value={profile.phone}
+                          readOnly
+                          className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-50 cursor-not-allowed"
                         />
                       </div>
                       <div>
@@ -254,33 +262,37 @@ export default function AccountPageModern() {
                         </label>
                         <input
                           type="date"
-                          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#e60023] focus:border-transparent"
+                          value={profile.dob}
+                          readOnly
+                          className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-50 cursor-not-allowed"
                         />
                       </div>
                       <div>
                         <label className="block text-sm font-semibold text-gray-600 mb-2">
                           Gender
                         </label>
-                        <select className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#e60023] focus:border-transparent">
-                          <option>Male</option>
-                          <option>Female</option>
-                          <option>Other</option>
-                        </select>
+                        <input
+                          type="text"
+                          value={profile.gender}
+                          readOnly
+                          className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-50 cursor-not-allowed"
+                        />
                       </div>
                     </div>
                   </div>
 
                   <div className="mt-6 flex gap-3">
-                    <button className="px-6 py-3 bg-[#e60023] text-white rounded-xl hover:bg-[#c4001d] transition font-semibold shadow-lg">
-                      Save Changes
-                    </button>
-                    <button className="px-6 py-3 bg-gray-200 text-gray-700 rounded-xl hover:bg-gray-300 transition font-semibold">
-                      Cancel
+                    <button
+                      onClick={handleProfileUpdate}
+                      className="px-6 py-3 bg-[#e60023] text-white rounded-xl hover:bg-[#c4001d] transition font-semibold shadow-lg"
+                    >
+                      Update
                     </button>
                   </div>
                 </motion.div>
               )}
 
+              {/* Addresses Tab */}
               {activeTab === "addresses" && (
                 <motion.div
                   key="addresses"
@@ -340,8 +352,7 @@ export default function AccountPageModern() {
                             {addr.city}, {addr.country} - {addr.pincode}
                           </p>
                           <p className="text-gray-500 text-sm flex items-center gap-2">
-                            <FaPhone className="text-xs" />
-                            {addr.phone}
+                            <FaPhone className="text-xs" /> {addr.phone}
                           </p>
                         </motion.div>
                       ))}
@@ -350,6 +361,7 @@ export default function AccountPageModern() {
                 </motion.div>
               )}
 
+              {/* Orders Tab */}
               {activeTab === "orders" && (
                 <motion.div
                   key="orders"
@@ -413,7 +425,106 @@ export default function AccountPageModern() {
         </div>
       </div>
 
-      {/* Modal */}
+      {/* Profile Update Modal */}
+      <AnimatePresence>
+        {isProfileModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+            onClick={() => setIsProfileModalOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-2xl p-8 w-full max-w-md shadow-2xl"
+            >
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold text-gray-800">
+                  Update Personal Information
+                </h2>
+                <button
+                  onClick={() => setIsProfileModalOpen(false)}
+                  className="p-2 hover:bg-gray-100 rounded-lg transition"
+                >
+                  <FaTimes className="text-gray-500" />
+                </button>
+              </div>
+
+              <div className="space-y-4">
+                {/* Profile Picture */}
+                <div className="flex justify-center">
+                  <div className="relative">
+                    <img
+                      src={tempProfile.profilePic}
+                      alt="Profile"
+                      className="w-32 h-32 rounded-full object-cover border-4 border-[#e60023]"
+                    />
+                    <label className="absolute bottom-2 right-2 bg-[#e60023] text-white p-2 rounded-full cursor-pointer hover:bg-[#c4001d] transition">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={handleProfilePicChange}
+                      />
+                      <FaCamera />
+                    </label>
+                  </div>
+                </div>
+
+                <input
+                  type="tel"
+                  placeholder="Phone Number"
+                  value={tempProfile.phone}
+                  onChange={(e) =>
+                    setTempProfile({ ...tempProfile, phone: e.target.value })
+                  }
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#e60023] focus:border-transparent"
+                />
+                <input
+                  type="date"
+                  value={tempProfile.dob}
+                  onChange={(e) =>
+                    setTempProfile({ ...tempProfile, dob: e.target.value })
+                  }
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#e60023] focus:border-transparent"
+                />
+                <select
+                  value={tempProfile.gender}
+                  onChange={(e) =>
+                    setTempProfile({ ...tempProfile, gender: e.target.value })
+                  }
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#e60023] focus:border-transparent"
+                >
+                  <option>Male</option>
+                  <option>Female</option>
+                  <option>Other</option>
+                </select>
+
+                <div className="mt-4 flex gap-3">
+                  <button
+                    onClick={saveProfileChanges}
+                    className="flex-1 px-6 py-3 bg-[#e60023] text-white rounded-xl hover:bg-[#c4001d] transition font-semibold shadow-lg"
+                  >
+                    Save
+                  </button>
+                  <button
+                    onClick={() => setIsProfileModalOpen(false)}
+                    className="flex-1 px-6 py-3 bg-gray-200 text-gray-700 rounded-xl hover:bg-gray-300 transition font-semibold"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Address Modal */}
       <AnimatePresence>
         {isModalOpen && (
           <motion.div
@@ -479,34 +590,34 @@ export default function AccountPageModern() {
                   }
                   className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#e60023] focus:border-transparent"
                 />
-                <div className="grid grid-cols-2 gap-4">
-                  <input
-                    type="text"
-                    placeholder="City"
-                    value={editingAddress?.city || ""}
-                    onChange={(e) =>
-                      setEditingAddress({
-                        ...editingAddress,
-                        city: e.target.value,
-                      })
-                    }
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#e60023] focus:border-transparent"
-                  />
-                  <input
-                    type="text"
-                    placeholder="Pincode"
-                    value={editingAddress?.pincode || ""}
-                    onChange={(e) =>
-                      setEditingAddress({
-                        ...editingAddress,
-                        pincode: e.target.value,
-                      })
-                    }
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#e60023] focus:border-transparent"
-                  />
-                </div>
-                <select
-                  value={editingAddress?.country || "India"}
+                <input
+                  type="text"
+                  placeholder="City"
+                  value={editingAddress?.city || ""}
+                  onChange={(e) =>
+                    setEditingAddress({
+                      ...editingAddress,
+                      city: e.target.value,
+                    })
+                  }
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#e60023] focus:border-transparent"
+                />
+                <input
+                  type="text"
+                  placeholder="Pincode"
+                  value={editingAddress?.pincode || ""}
+                  onChange={(e) =>
+                    setEditingAddress({
+                      ...editingAddress,
+                      pincode: e.target.value,
+                    })
+                  }
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#e60023] focus:border-transparent"
+                />
+                <input
+                  type="text"
+                  placeholder="Country"
+                  value={editingAddress?.country || ""}
                   onChange={(e) =>
                     setEditingAddress({
                       ...editingAddress,
@@ -514,32 +625,29 @@ export default function AccountPageModern() {
                     })
                   }
                   className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#e60023] focus:border-transparent"
-                >
-                  <option value="India">India</option>
-                  <option value="USA">United States</option>
-                  <option value="UK">United Kingdom</option>
-                  <option value="Australia">Australia</option>
-                </select>
-              </div>
+                />
 
-              <div className="flex gap-3 mt-6">
-                <button
-                  onClick={saveAddress}
-                  className="flex-1 bg-[#e60023] text-white rounded-xl py-3 hover:bg-[#c4001d] transition font-bold shadow-lg"
-                >
-                  Save Address
-                </button>
-                <button
-                  onClick={() => setIsModalOpen(false)}
-                  className="px-6 bg-gray-200 text-gray-700 rounded-xl hover:bg-gray-300 transition font-semibold"
-                >
-                  Cancel
-                </button>
+                <div className="mt-4 flex gap-3">
+                  <button
+                    onClick={saveAddress}
+                    className="flex-1 px-6 py-3 bg-[#e60023] text-white rounded-xl hover:bg-[#c4001d] transition font-semibold shadow-lg"
+                  >
+                    Save
+                  </button>
+                  <button
+                    onClick={() => setIsModalOpen(false)}
+                    className="flex-1 px-6 py-3 bg-gray-200 text-gray-700 rounded-xl hover:bg-gray-300 transition font-semibold"
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
+
+      <Footer />
     </div>
   )
 }
