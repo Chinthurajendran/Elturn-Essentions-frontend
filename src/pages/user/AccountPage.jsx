@@ -146,16 +146,16 @@ export default function AccountPageModern() {
   }
 
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+    <div className=" bg-[#f5f5f7] min-h-screen">
       <Header />
       <div className="max-w-7xl mx-auto px-6 pt-20 py-8">
         <h1 className="text-3xl font-bold text-[#e60023] mb-10 text-left">
           My Account
         </h1>
-        <div className="grid lg:grid-cols-4 gap-6">
+        <div className="grid lg:grid-cols-4 gap-6 ">
           {/* Sidebar */}
-          <div className="lg:col-span-1">
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden sticky top-6">
+          <div className="lg:col-span-1 ">
+            <div className="bg-white rounded-2xl  overflow-hidden sticky top-6">
               <div
                 className="relative w-full h-64 text-white"
                 style={{
@@ -198,7 +198,7 @@ export default function AccountPageModern() {
           </div>
 
           {/* Main Content */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-3 ">
             <AnimatePresence mode="wait">
               {/* Profile Tab */}
               {activeTab === "profile" && (
@@ -207,7 +207,7 @@ export default function AccountPageModern() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
-                  className="bg-white rounded-2xl shadow-lg p-8"
+                  className="bg-white rounded-2xl h-[480px]  p-8"
                 >
                   <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
                     <FaUser className="text-[#e60023]" />
@@ -299,9 +299,9 @@ export default function AccountPageModern() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
-                  className="space-y-4"
+                  className="space-y-4 rounded-2xl bg-white max-h-[480px] overflow-y-auto"
                 >
-                  <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <div className="  p-8">
                     <div className="flex justify-between items-center mb-6">
                       <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-3">
                         <FaMapMarkerAlt className="text-[#e60023]" />
@@ -368,7 +368,7 @@ export default function AccountPageModern() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
-                  className="bg-white rounded-2xl shadow-lg p-8"
+                  className="bg-white rounded-2xl max-h-[480px] overflow-y-auto p-8"
                 >
                   <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
                     <FaShoppingBag className="text-[#e60023]" />
