@@ -10,15 +10,19 @@ import ScrollingTestimonials from "../../components/layout/ScrollingTestimonials
 import { RevealLinks } from "../../components/layout/RevealLinks"
 import HorizontalScrollCarousel from "../../components/layout/HorizontalScrollCarousel"
 import NewArrivals from "../../components/layout/NewArrivals"
+import FullScreenVideo from "../../components/layout/FullScreenVideo"
 
 function Home() {
   return (
     <div id="home" className=" bg-[#f5f5f7]">
-      <Section />
+      {/* <Section /> */}
+      <FullScreenVideo/>
       <ShopByCategory />
       <ScrollBasedVelocityDemo />
       <NewArrivals/>
       <BestSellers />
+
+      
       {/* <div
         style={{
           height: "600px",
@@ -37,6 +41,8 @@ function Home() {
       {/* <CustomerTestimonials /> */}
       {/* <RevealLinks/> */}
       {/* <HorizontalScrollCarousel/> */}
+
+
       <ScrollingTestimonials/>
       <Footer />
     </div>

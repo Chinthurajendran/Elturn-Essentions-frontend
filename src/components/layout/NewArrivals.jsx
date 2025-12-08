@@ -109,7 +109,7 @@ function NewArrivals() {
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1.0 }}
-          className="text-center font-plusjakarta text-red-600 font-bold text-3xl sm:text-9xl tracking-wide uppercase"
+          className="text-center font-plusjakarta text-red-600 font-bold text-3xl sm:text-5xl tracking-wide uppercase"
         >
           New Arrivals
         </motion.h2>

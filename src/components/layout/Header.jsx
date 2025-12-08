@@ -147,13 +147,6 @@ export function Header() {
                       ))}
                     </ul>
                   </div>
-                  {/* <div className="col-span-2 flex justify-center items-center">
-                    <img
-                      src={menCategory.image}
-                      alt="Men"
-                      className="w-80 h-80 object-cover rounded-2xl shadow-md"
-                    />
-                  </div> */}
                 </>
               ) : (
                 <>
@@ -169,15 +162,61 @@ export function Header() {
                       ))}
                     </ul>
                   </div>
-                  {/* <div className="col-span-2 flex justify-center items-center">
-                    <img
-                      src={womenCategory.image}
-                      alt="Women"
-                      className="w-80 h-80 object-cover rounded-2xl shadow-md"
-                    />
-                  </div> */}
                 </>
               )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ===== MOBILE MENU ===== */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden fixed top-0 right-0 w-64 h-full bg-red-600 text-white shadow-lg z-50 p-6"
+          >
+            {/* Close button */}
+            <X
+              className="h-6 w-6 absolute top-4 right-4 cursor-pointer"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+
+            <h2 className="text-xl font-bold mb-6">CATEGORIES</h2>
+
+            <div className="flex flex-col gap-6">
+              {/* MEN */}
+              <div>
+                <h3 className="text-lg font-semibold mb-2">Men</h3>
+                <ul className="space-y-2">
+                  {menCategory.items.map((item, i) => (
+                    <li
+                      key={i}
+                      className="cursor-pointer  text-white hover:underline"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* WOMEN */}
+              <div>
+                <h3 className="text-lg font-semibold mb-2">Women</h3>
+                <ul className="space-y-2">
+                  {womenCategory.items.map((item, i) => (
+                    <li
+                      key={i}
+                      className="cursor-pointer text-white hover:underline"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </motion.div>
         )}

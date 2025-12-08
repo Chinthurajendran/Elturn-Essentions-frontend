@@ -237,7 +237,7 @@ const filteredProducts = useMemo(() => {
       [productId]: (prev[productId] - 1 + totalImages) % totalImages,
     }))
   }
-
+ 
   return (
     <div className="flex flex-col min-h-screen bg-[#f5f5f7] pt-20 overflow-hidden">
       <Header />
