@@ -1,10 +1,12 @@
 // src/pages/FullScreenVideo.jsx
 import React, { useEffect, useRef } from "react"
-import sampleVideo from "../../assets/brand intro video.mp4" // <-- your video file here
 import { Header } from "./Header"
 
 export default function FullScreenVideo() {
+  
   const videoRef = useRef(null)
+  const videoUrl = "https://res.cloudinary.com/da3wfqamr/video/upload/v1765191259/brand_intro_video_mcbhns.mp4"
+
 
   useEffect(() => {
     const video = videoRef.current
@@ -26,7 +28,7 @@ export default function FullScreenVideo() {
       </div>
       <video
         ref={videoRef}
-        src={sampleVideo}
+        src={videoUrl}
         className="w-full h-full object-cover"
         autoPlay
         muted
