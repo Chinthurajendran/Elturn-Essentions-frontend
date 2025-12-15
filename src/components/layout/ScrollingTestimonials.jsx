@@ -133,7 +133,10 @@ export default function ScrollingTestimonials() {
                   key={j}
                   whileHover={{ scale: 1.02, y: -5 }}
                   transition={{ duration: 0.3 }}
-                  className="flex w-[550px] h-[190px] bg-white text-black rounded-2xl overflow-hidden flex-shrink-0 shadow-sm hover:shadow-lg transition-shadow cursor-pointer"
+                  className="flex w-[90vw] h-[150px]
+                  sm:w-[520px] sm:h-[180px]
+                  md:w-[550px] md:h-[190px]
+                  lg:w-[500px] lg:h-[180px] bg-white text-black rounded-2xl overflow-hidden flex-shrink-0 shadow-sm hover:shadow-lg transition-shadow cursor-pointer"
                 >
                   <img
                     src={t.image}
@@ -141,11 +144,11 @@ export default function ScrollingTestimonials() {
                     className="w-40 h-full object-cover rounded-l-2xl"
                   />
                   <div className="p-7 flex flex-col justify-center">
-                    <p className="font-semibold text-xl">{t.name}</p>
-                    <p className="text-base text-gray-600 mb-2">
+                    <p className="font-semibold text-xl ">{t.name}</p>
+                    <p className="text-sm text-gray-600 mb-2">
                       {t.title} of {t.company}
                     </p>
-                    <p className="text-gray-700 text-base leading-relaxed">
+                    <p className="text-gray-700 text-sm leading-relaxed">
                       {t.quote}
                     </p>
                   </div>

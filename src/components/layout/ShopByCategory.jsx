@@ -39,7 +39,7 @@ const ShopByCategory = () => {
   }
 
   return (
-    <section id="categories" className="py-10" ref={sectionRef}>
+    <section id="categories" className="py-10 " ref={sectionRef}>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
@@ -64,7 +64,7 @@ const ShopByCategory = () => {
       </motion.div>
 
       {/* Categories Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 md:px-16">
+      <div className="grid grid-cols-1 sm:grid-cols-3 sm:gap-4 md:grid-cols-3 lg:gap-8 gap-8 px-6 md:px-16">
         {categories.map((category, index) => (
           <motion.div
             key={category.id}
@@ -74,7 +74,7 @@ const ShopByCategory = () => {
             className="group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer"
             onClick={() => handleProductClick(category.id)}
           >
-            <div className="aspect-[3/4] overflow-hidden rounded-2xl">
+            <div className=" overflow-hidden rounded-2xl">
               <img
                 src={category.image}
                 alt={category.name}
@@ -86,18 +86,18 @@ const ShopByCategory = () => {
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition duration-500"></div>
 
             <div className="absolute inset-0 flex flex-col justify-end items-center text-center text-white p-6">
-              <h3 className="text-2xl font-plusjakarta font-bold mb-2">
+              <h3 className="text-2xl sm:text-base md:text-lg lg:text-2xl  font-plusjakarta font-bold mb-2">
                 {category.name}
               </h3>
-              <p className="text-sm font-plusjakarta mb-4">{category.description}</p>
+              <p className="text-sm sm:text-xs md:text-sm lg:text-lg font-plusjakarta mb-4">{category.description}</p>
               <button
-                className="px-5 py-2 font-plusjakarta bg-white text-black rounded-full hover:bg-red-500 hover:text-white transition"
+                className="px-5 py-2 sm:text-xs md:text-sm lg:text-xl font-plusjakarta bg-white text-black rounded-full hover:bg-red-500 hover:text-white transition whitespace-nowrap"
                 onClick={(e) => {
                   e.stopPropagation()
                   handleProductClick(category.id)
                 }}
               >
-                {category.button}
+                Explore Collection
               </button>
             </div>
           </motion.div>

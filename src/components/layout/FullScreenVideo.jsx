@@ -1,40 +1,18 @@
-// src/pages/FullScreenVideo.jsx
-import React, { useEffect, useRef } from "react"
-import { Header } from "./Header"
+import React from 'react'
 
-export default function FullScreenVideo() {
-  
-  const videoRef = useRef(null)
-  const videoUrl = "https://res.cloudinary.com/da3wfqamr/video/upload/v1765191259/brand_intro_video_mcbhns.mp4"
-
-
-  useEffect(() => {
-    const video = videoRef.current
-    if (video.requestFullscreen) {
-      video.requestFullscreen()
-    } else if (video.webkitRequestFullscreen) {
-      video.webkitRequestFullscreen()
-    } else if (video.msRequestFullscreen) {
-      video.msRequestFullscreen()
-    }
-
-    video.play().catch((err) => console.log("Autoplay blocked:", err))
-  }, [])
-
+function FullScreenVideo() {
+      const videoUrl = "https://res.cloudinary.com/da3wfqamr/video/upload/v1765191259/brand_intro_video_mcbhns.mp4"
   return (
-    <div className="w-screen h-screen bg-black flex items-center justify-center overflow-hidden relative">
-      <div className="absolute top-0 left-0 w-full z-50">
-        <Header />
-      </div>
+      <div className="w-screen h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] 2xl:h-[800px] overflow-hidden relative">
       <video
-        ref={videoRef}
         src={videoUrl}
-        className="w-full h-full object-cover"
         autoPlay
-        muted
         loop
-        playsInline
-      />
+        muted
+        className='w-full h-full object-cover'>
+      </video>
     </div>
   )
 }
+
+export default FullScreenVideo

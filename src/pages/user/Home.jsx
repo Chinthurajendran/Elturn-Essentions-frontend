@@ -1,6 +1,5 @@
 import React from "react"
 import { Footer } from "../../components/layout/Footer"
-import { Section } from "../../components/layout/Section"
 import CustomerTestimonials from "../../components/layout/CustomerTestimonials"
 import ShopByCategory from "../../components/layout/ShopByCategory"
 import BestSellers from "../../components/layout/BestSellers"
@@ -11,11 +10,13 @@ import { RevealLinks } from "../../components/layout/RevealLinks"
 import HorizontalScrollCarousel from "../../components/layout/HorizontalScrollCarousel"
 import NewArrivals from "../../components/layout/NewArrivals"
 import FullScreenVideo from "../../components/layout/FullScreenVideo"
+import { Header } from "../../components/layout/Header"
 
 function Home() {
   return (
     <div id="home" className=" bg-[#f5f5f7]">
       {/* <Section /> */}
+      <Header/>
       <FullScreenVideo/>
       <ShopByCategory />
       <ScrollBasedVelocityDemo />

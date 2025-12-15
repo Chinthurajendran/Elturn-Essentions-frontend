@@ -185,13 +185,16 @@ export default function ProductDetail() {
 
           {/* CENTER: Image Carousel */}
           <div className="lg:w-1/2 flex flex-col items-center relative overflow-hidden">
-            <div className="w-full h-[500px] relative">
+            <div className="w-full   h-[500px]
+  sm:h-[550px]
+  md:h-[600px]
+  lg:h-[650px] relative">
               <AnimatePresence mode="wait">
                 <motion.img
                   key={product.images[mainImageIndex]}
                   src={product.images[mainImageIndex]}
                   alt={product.productName}
-                  className="w-full h-full object-cover rounded-lg"
+                  className="w-full h-full object-cover "
                   initial={{ opacity: 0, scale: 0.05 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
