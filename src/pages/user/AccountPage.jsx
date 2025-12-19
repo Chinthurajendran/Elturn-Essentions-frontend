@@ -14,8 +14,8 @@ import {
   FaSignOutAlt,
   FaCamera,
 } from "react-icons/fa"
-import { Header } from "../../components/layout/Header"
-import { Footer } from "../../components/layout/Footer"
+import { Header } from "../../components/layout/user/Header"
+import { Footer } from "../../components/layout/user/Footer"
 
 export default function AccountPageModern() {
   // Profile state

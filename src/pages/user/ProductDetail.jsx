@@ -1,7 +1,7 @@
 // ProductDetail.jsx
 import React, { useRef, useState } from "react"
-import { Header } from "../../components/layout/Header"
-import { Footer } from "../../components/layout/Footer"
+import { Header } from "../../components/layout/user/Header"
+import { Footer } from "../../components/layout/user/Footer"
 import {
   FaChevronLeft,
   FaChevronRight,
@@ -11,7 +11,10 @@ import {
   FaMinus,
 } from "react-icons/fa"
 import { motion, AnimatePresence, useInView } from "framer-motion"
-import RelatedProductsSlider from "../../components/layout/RelatedProductsSlider"
+import RelatedProductsSlider from "../../components/layout/user/RelatedProductsSlider"
+import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+
 
 import img1 from "../../assets/T-shirt1.jpg"
 import img2 from "../../assets/T-shirt2.jpg"
@@ -140,7 +143,8 @@ export default function ProductDetail() {
   const [prevQuantity, setPrevQuantity] = useState(1)
   const sectionRef = useRef(null)
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
-  
+
+  const navigate = useNavigate()
 
   const selectedSizeData = product.sizes.find(
     (s) => s.size === selectedSize
@@ -162,6 +166,9 @@ export default function ProductDetail() {
     setMainImageIndex((prev) =>
       prev === 0 ? product.images.length - 1 : prev - 1
     )
+  }
+  const BuyNow = () => {
+    navigate("/CheckoutPage")
   }
 
   return (
@@ -185,10 +192,12 @@ export default function ProductDetail() {
 
           {/* CENTER: Image Carousel */}
           <div className="lg:w-1/2 flex flex-col items-center relative overflow-hidden">
-            <div className="w-full   h-[500px]
+            <div
+              className="w-full   h-[500px]
   sm:h-[550px]
   md:h-[600px]
-  lg:h-[650px] relative">
+  lg:h-[650px] relative"
+            >
               <AnimatePresence mode="wait">
                 <motion.img
                   key={product.images[mainImageIndex]}
@@ -312,7 +321,10 @@ export default function ProductDetail() {
 
             {/* Action Buttons */}
             <div className="flex flex-col gap-4 mt-6 w-full lg:w-3/4">
-              <button className="w-full font-plusjakarta bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 px-4 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105">
+              <button
+                className="w-full font-plusjakarta bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 px-4 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105"
+                onClick={BuyNow}
+              >
                 Buy Now
               </button>
 

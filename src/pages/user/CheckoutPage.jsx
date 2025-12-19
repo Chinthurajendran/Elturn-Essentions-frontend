@@ -4,10 +4,10 @@ import { FaCreditCard, FaMoneyBillWave } from "react-icons/fa";
 import { SiRazorpay } from "react-icons/si";
 import img1 from "../../assets/T-shirt1.jpg";
 import img2 from "../../assets/T-shirt2.jpg";
-import { Header } from "../../components/layout/Header";
-import { Footer } from "../../components/layout/Footer";
+import { Header } from "../../components/layout/user/Header";
+import { Footer } from "../../components/layout/user/Footer";
 
-export default function CheckoutPage2025() {
+export default function CheckoutPage() {
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [email, setEmail] = useState("");
   const [selectedAddress, setSelectedAddress] = useState("existing");

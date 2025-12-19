@@ -1,12 +1,12 @@
 import React, { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 
-import img1 from "../../assets/customer1.jpg"
-import img2 from "../../assets/customer2.jpg"
-import img3 from "../../assets/customer3.jpg"
-import img4 from "../../assets/customer4.jpg"
-import img5 from "../../assets/customer5.jpg"
-import img6 from "../../assets/customer6.jpg"
+import img1 from "../../../assets/customer1.jpg"
+import img2 from "../../../assets/customer2.jpg"
+import img3 from "../../../assets/customer3.jpg"
+import img4 from "../../../assets/customer4.jpg"
+import img5 from "../../../assets/customer5.jpg"
+import img6 from "../../../assets/customer6.jpg"
 
 const testimonials = [
   {

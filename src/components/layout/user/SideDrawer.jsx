@@ -5,11 +5,11 @@ import { X } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 
 // Dummy images (replace with actual imports)
-import img1 from "../../assets/T-shirt1.jpg"
-import img2 from "../../assets/T-shirt2.jpg"
-import img3 from "../../assets/T-shirt3.jpg"
-import img4 from "../../assets/T-shirt4.jpg"
-import img5 from "../../assets/T-shirt5.jpg"
+import img1 from "../../../assets/T-shirt1.jpg"
+import img2 from "../../../assets/T-shirt2.jpg"
+import img3 from "../../../assets/T-shirt3.jpg"
+import img4 from "../../../assets/T-shirt4.jpg"
+import img5 from "../../../assets/T-shirt5.jpg"
 
 export function SideDrawer({ activeDrawer, setActiveDrawer }) {
   const navigate = useNavigate()

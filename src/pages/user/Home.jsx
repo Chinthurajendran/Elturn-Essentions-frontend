@@ -1,49 +1,24 @@
-import React from "react"
-import { Footer } from "../../components/layout/Footer"
-import CustomerTestimonials from "../../components/layout/CustomerTestimonials"
-import ShopByCategory from "../../components/layout/ShopByCategory"
-import BestSellers from "../../components/layout/BestSellers"
-import { ScrollBasedVelocityDemo } from "../../components/layout/ScrollBasedVelocityDemo"
-import CircularGallery from "../../components/ui/CircularGallery"
-import ScrollingTestimonials from "../../components/layout/ScrollingTestimonials"
-import { RevealLinks } from "../../components/layout/RevealLinks"
-import HorizontalScrollCarousel from "../../components/layout/HorizontalScrollCarousel"
-import NewArrivals from "../../components/layout/NewArrivals"
-import FullScreenVideo from "../../components/layout/FullScreenVideo"
-import { Header } from "../../components/layout/Header"
+import { Header } from "../../components/layout/user/Header"
+import ThumbnailVideo from "../../components/layout/user/ThumbnailVideo"
+import ShopByCategory from "../../components/layout/user/ShopByCategory"
+import BestSellers from "../../components/layout/user/BestSellers"
+import { ScrollBasedText } from "../../components/layout/user/ScrollBasedText"
+import ScrollingTestimonials from "../../components/layout/user/ScrollingTestimonials"
+import NewArrivals from "../../components/layout/user/NewArrivals"
+import { Footer } from "../../components/layout/user/Footer"
+
+
 
 function Home() {
   return (
     <div id="home" className=" bg-[#f5f5f7]">
       {/* <Section /> */}
       <Header/>
-      <FullScreenVideo/>
+      <ThumbnailVideo/>
       <ShopByCategory />
-      <ScrollBasedVelocityDemo />
+      <ScrollBasedText />
       <NewArrivals/>
       <BestSellers />
-
-      
-      {/* <div
-        style={{
-          height: "600px",
-          position: "relative",
-        }}
-      >
-        <CircularGallery
-          bend={3}
-          textColor="#000000"
-          borderRadius={0.05}
-          scrollEase={0.02}
-          font='bold 30px "Roboto Slab"'
-        />
-      </div> */}
-
-      {/* <CustomerTestimonials /> */}
-      {/* <RevealLinks/> */}
-      {/* <HorizontalScrollCarousel/> */}
-
-
       <ScrollingTestimonials/>
       <Footer />
     </div>

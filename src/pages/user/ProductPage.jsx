@@ -2,9 +2,9 @@ import React, { useState, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Filter } from "lucide-react"
 import { useNavigate } from "react-router-dom"
-import { FilterDrawer } from "../../components/layout/FilterDrawer"
-import { Header } from "../../components/layout/Header"
-import { Footer } from "../../components/layout/Footer"
+import { FilterDrawer } from "../../components/layout/user/FilterDrawer"
+import { Header } from "../../components/layout/user/Header"
+import { Footer } from "../../components/layout/user/Footer"
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa"
 
 // Dummy images

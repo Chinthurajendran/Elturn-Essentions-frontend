@@ -1,19 +1,19 @@
-import React, {useRef } from "react"
+import React, { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import RelatedProductsSlider from "./RelatedProductsSlider"
 
-import img1 from "../../assets/T-shirt1.jpg"
-import img2 from "../../assets/T-shirt2.jpg"
-import img3 from "../../assets/T-shirt3.jpg"
-import img4 from "../../assets/T-shirt4.jpg"
-import img5 from "../../assets/T-shirt5.jpg"
-import img6 from "../../assets/T-shirt6.jpg"
-import img7 from "../../assets/T-shirt7.jpg"
-import img8 from "../../assets/T-shirt8.jpg"
-import img9 from "../../assets/T-shirt9.jpg"
-import img10 from "../../assets/T-shirt10.jpg"
+import img1 from "../../../assets/T-shirt1.jpg"
+import img2 from "../../../assets/T-shirt2.jpg"
+import img3 from "../../../assets/T-shirt3.jpg"
+import img4 from "../../../assets/T-shirt4.jpg"
+import img5 from "../../../assets/T-shirt5.jpg"
+import img6 from "../../../assets/T-shirt6.jpg"
+import img7 from "../../../assets/T-shirt7.jpg"
+import img8 from "../../../assets/T-shirt8.jpg"
+import img9 from "../../../assets/T-shirt9.jpg"
+import img10 from "../../../assets/T-shirt10.jpg"
 
-const bestSellers = [
+const newArrivals = [
   {
     name: "Crimson Eagle",
     image: img1,
@@ -96,24 +96,27 @@ const bestSellers = [
   },
 ]
 
-export default function BestSellers() {
+function NewArrivals() {
   const sectionRef = useRef(null)
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
-
   return (
-    <section
-      ref={sectionRef}
-      className="relative  px-4 md:px-8 lg:px-12 overflow-hidden"
-    >
-      <motion.h2
-        initial={{ opacity: 0, y: 50 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 1.0 }}
-        className="text-center font-plusjakarta text-red-600 font-bold text-3xl sm:text-5xl tracking-wide uppercase"
+    <div>
+      <section
+        ref={sectionRef}
+        className="relative px-4 md:px-8 lg:px-12 overflow-hidden"
       >
-        Best Sellers
-      </motion.h2>
-      <RelatedProductsSlider relatedProducts={bestSellers} />
-    </section>
+        <motion.h2
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 1.0 }}
+          className="text-center font-plusjakarta text-red-600 font-bold text-3xl sm:text-5xl tracking-wide uppercase"
+        >
+          New Arrivals
+        </motion.h2>
+        <RelatedProductsSlider relatedProducts={newArrivals} />
+      </section>
+    </div>
   )
 }
+
+export default NewArrivals

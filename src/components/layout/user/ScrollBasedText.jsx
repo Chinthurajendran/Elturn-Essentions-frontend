@@ -1,9 +1,9 @@
 import {
   ScrollVelocityContainer,
   ScrollVelocityRow,
-} from "../ui/scroll-based-velocity"
+} from "../../ui/scroll-based-velocity"
 
-export function ScrollBasedVelocityDemo() {
+export function ScrollBasedText() {
   return (
     <div className="relative bg-[#f5f5f7] pb-5 font-plusjakarta flex w-full flex-col items-center justify-center overflow-hidden">
       <ScrollVelocityContainer className="text-4xl font-bold tracking-[-0.02em] md:text-7xl md:leading-[5rem]">

@@ -1,8 +1,8 @@
 import React, { useRef } from "react"
 import { motion, useInView } from "framer-motion"
-import womenDressImg from "../../assets/women.jpg"
-import unisexTshirtImg from "../../assets/men.jpg"
-import minimalistShirtImg from "../../assets/minimalist.jpg"
+import womenDressImg from "../../../assets/women.jpg"
+import unisexTshirtImg from "../../../assets/men.jpg"
+import minimalistShirtImg from "../../../assets/minimalist.jpg"
 import { useNavigate } from "react-router-dom"
 
 const categories = [

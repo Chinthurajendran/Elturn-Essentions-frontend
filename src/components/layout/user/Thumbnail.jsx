@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from "react";
-import slide1 from "../../assets/6359.jpg";
-import slide2 from "../../assets/6358.jpg";
-import slide3 from "../../assets/6357.jpg";
+import slide1 from "../../../assets/6359.jpg";
+import slide2 from "../../../assets/6358.jpg";
+import slide3 from "../../../assets/6357.jpg";
 import { Header } from "./Header";
 
-export function Section() {
+export function Thumbnail() {
   const slides = [
     { id: 1, src: slide1, alt: "Slide 1" },
     { id: 2, src: slide2, alt: "Slide 2" },
