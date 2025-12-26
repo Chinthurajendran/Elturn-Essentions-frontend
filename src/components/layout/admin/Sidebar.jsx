@@ -18,6 +18,8 @@ import {
   Activity,
   LogOut,
   ChevronDown,
+  BadgePercent,
+  ChartNoAxesCombined 
 } from "lucide-react"
 
 export default function Sidebar() {
@@ -32,7 +34,7 @@ export default function Sidebar() {
         {
           name: "Charts",
           path: "/AdminHome/AdminDashboard",
-          icon: <LayoutDashboard size={20} />,
+          icon: <ChartNoAxesCombined  size={20} />,
         },
       ],
     },
@@ -45,13 +47,8 @@ export default function Sidebar() {
           icon: <Package size={20} />,
         },
         {
-          name: "Add Product",
-          path: "/admin/products/add",
-          icon: <ShoppingCart size={20} />,
-        },
-        {
           name: "Categories",
-          path: "/admin/categories",
+          path: "/AdminHome/AllCategories",
           icon: <Tag size={20} />,
         },
       ],
@@ -61,7 +58,7 @@ export default function Sidebar() {
       items: [
         {
           name: "Orders",
-          path: "/admin/orders",
+          path: "/AdminHome/AllOrders",
           icon: <ShoppingCart size={20} />,
         },
       ],
@@ -71,7 +68,7 @@ export default function Sidebar() {
       items: [
         {
           name: "Customers",
-          path: "/admin/customers",
+          path: "/AdminHome/AllCustomer",
           icon: <Users size={20} />,
         },
       ],
@@ -81,7 +78,7 @@ export default function Sidebar() {
       items: [
         {
           name: "Payments",
-          path: "/admin/payments",
+          path: "/AdminHome/AllPayments",
           icon: <CreditCard size={20} />,
         },
       ],
@@ -90,12 +87,17 @@ export default function Sidebar() {
       title: "Marketing",
       items: [
         {
-          name: "Coupons & Offers",
-          path: "/admin/coupons",
+          name: "Coupons",
+          path: "/AdminHome/AllCoupons",
           icon: <Tag size={20} />,
         },
-        { name: "Banners", path: "/admin/banners", icon: <Image size={20} /> },
-        { name: "Reviews", path: "/admin/reviews", icon: <Star size={20} /> },
+                {
+          name: "Offers",
+          path: "/AdminHome/AllOffers",
+          icon: <BadgePercent  size={20} />,
+        },
+        { name: "Banners", path: "/AdminHome/AllBanners", icon: <Image size={20} /> },
+        { name: "Reviews", path: "/AdminHome/AllReviews", icon: <Star size={20} /> },
       ],
     },
     {
@@ -123,12 +125,12 @@ export default function Sidebar() {
       items: [
         {
           name: "Admin Users",
-          path: "/admin/admin-users",
+          path: "/AdminHome/AllAdminUsers",
           icon: <UserCog size={20} />,
         },
         {
           name: "Roles & Permissions",
-          path: "/admin/roles",
+          path: "/AdminHome/AllRoles",
           icon: <Lock size={20} />,
         },
       ],
